@@ -195,6 +195,19 @@ footer{background:#070f1e;border-top:1px solid rgba(184,151,42,.2);padding:3rem 
 .social-links{display:flex;gap:.7rem;margin-top:1.3rem}
 .social-links a{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.75);transition:all .25s}
 .social-links a:hover{background:var(--gold);color:var(--dark)}
+
+/* ====== DEMO MODAL ====== */
+.demo-overlay{display:none;position:fixed;inset:0;background:rgba(10,22,40,.75);backdrop-filter:blur(4px);z-index:2000;align-items:center;justify-content:center;padding:1.5rem}
+.demo-overlay.open{display:flex}
+.demo-modal{background:#fff;border-radius:14px;max-width:440px;width:100%;padding:2rem;position:relative;max-height:90vh;overflow-y:auto}
+.demo-close{position:absolute;top:1rem;left:1rem;background:none;border:none;font-size:1.1rem;cursor:pointer;color:var(--gray);width:32px;height:32px;border-radius:50%;transition:background .2s}
+.demo-close:hover{background:rgba(0,0,0,.05)}
+.demo-body .fg{margin-bottom:1rem}
+.demo-body label{display:block;font-size:.85rem;color:var(--gray);margin-bottom:.4rem}
+.demo-body input{width:100%;padding:.7rem 1rem;border:1px solid #ddd;border-radius:8px;font-family:'Tajawal',sans-serif;font-size:.9rem}
+.demo-body input:focus{outline:none;border-color:var(--gold)}
+.demo-success{text-align:center;padding:1rem 0}
+.demo-success .icon{font-size:2.5rem;margin-bottom:.8rem}
 .footer-col h4{color:var(--gold2);font-weight:700;margin-bottom:1rem;font-size:.95rem}
 .footer-col ul{list-style:none}
 .footer-col li{margin-bottom:8px}
@@ -238,7 +251,7 @@ section{padding:60px 0}
     <li><a href="#partners">شركاؤنا</a></li>
     <li><a href="#faq">الأسئلة الشائعة</a></li>
     <li><a href="#blog">المدونة</a></li>
-    <li><a href="https://hwkm.net" target="_blank" class="nav-platform">جرّب المنصة</a></li>
+    <li><a href="#" onclick="openDemoModal();return false;" class="nav-platform">جرّب المنصة</a></li>
     <li><a href="https://wa.me/966509015864?text=مرحباً، أرغب بالاستفسار عن منصة حوكم" target="_blank" rel="noopener" class="nav-cta">تواصل عبر واتساب</a></li>
   </ul>
 </nav>
@@ -559,7 +572,7 @@ section{padding:60px 0}
       </div>
       <div class="footer-col"><h4>الشركة</h4><ul><li><a href="#about">من نحن</a></li><li><a href="#vision">رؤيتنا</a></li><li><a href="#partners">شركاؤنا</a></li><li><a href="#contact">تواصل معنا</a></li></ul></div>
       <div class="footer-col"><h4>الخدمات</h4><ul><li><a href="#services">الحوكمة المؤسسية</a></li><li><a href="#services">إدارة الاجتماعات</a></li><li><a href="#services">التدقيق الداخلي</a></li><li><a href="#services">إدارة المخاطر</a></li><li><a href="#services">الامتثال</a></li></ul></div>
-      <div class="footer-col"><h4>المنصة</h4><ul><li><a href="https://hwkm.net">تجربة المنصة</a></li><li><a href="#blog">المدونة</a></li><li><a href="#faq">الأسئلة الشائعة</a></li></ul></div>
+      <div class="footer-col"><h4>المنصة</h4><ul><li><a href="#" onclick="openDemoModal();return false;">تجربة المنصة</a></li><li><a href="#blog">المدونة</a></li><li><a href="#faq">الأسئلة الشائعة</a></li></ul></div>
     </div>
     <div class="footer-btm">
       <p>© ٢٠٢٦ حوكم HWKM. جميع الحقوق محفوظة.</p>
@@ -568,7 +581,63 @@ section{padding:60px 0}
   </div>
 </footer>
 
+<!-- DEMO LEAD MODAL -->
+<div class="demo-overlay" id="demoOverlay" onclick="if(event.target===this)closeDemoModal()">
+  <div class="demo-modal">
+    <button class="demo-close" onclick="closeDemoModal()" aria-label="إغلاق">✕</button>
+    <div class="demo-body" id="demoBody">
+      <div class="stag" style="color:var(--gold)">تجربة المنصة</div>
+      <h3 style="margin:.5rem 0 .3rem;color:var(--dark)">قبل ما ندخلك الديمو...</h3>
+      <p style="color:var(--gray);font-size:.9rem;margin-bottom:1.2rem">عبّي بياناتك وبنوصلك رابط الدخول وبيانات المستخدم التجريبي فورًا.</p>
+      <form id="demoForm" action="https://formspree.io/f/mojogpon" method="POST" onsubmit="handleDemoSubmit(event)">
+        <input type="hidden" name="_subject" value="طلب تجربة ديمو - حوكم HWKM">
+        <div class="fg"><label for="dm-name">الاسم الكامل</label><input id="dm-name" name="name" type="text" placeholder="اسمك" required></div>
+        <div class="fg"><label for="dm-company">الشركة</label><input id="dm-company" name="company" type="text" placeholder="اسم الشركة" required></div>
+        <div class="fg"><label for="dm-email">البريد الإلكتروني</label><input id="dm-email" name="email" type="email" placeholder="email@company.com" required></div>
+        <div class="fg"><label for="dm-phone">رقم الجوال</label><input id="dm-phone" name="phone" type="tel" placeholder="05XXXXXXXX" dir="ltr" required></div>
+        <button type="submit" class="btn-sub">احصل على وصول للتجربة</button>
+      </form>
+    </div>
+  </div>
+</div>
+
 <script>
+function openDemoModal(){
+  document.getElementById('demoOverlay').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeDemoModal(){
+  document.getElementById('demoOverlay').classList.remove('open');
+  document.body.style.overflow='';
+}
+function handleDemoSubmit(e){
+  e.preventDefault();
+  const form = e.target;
+  const btn = form.querySelector('button[type="submit"]');
+  const orig = btn.textContent;
+  btn.disabled = true;
+  btn.textContent = 'جاري الإرسال...';
+  fetch(form.action, {method:"POST", body:new FormData(form), headers:{Accept:"application/json"}})
+    .then(res=>{
+      if(!res.ok) throw new Error('failed');
+      document.getElementById('demoBody').innerHTML = `
+        <div class="demo-success">
+          <div class="icon">✅</div>
+          <h3 style="color:var(--dark);margin-bottom:.5rem">تفضل، بيانات الدخول جاهزة!</h3>
+          <p style="color:var(--gray);font-size:.9rem;margin-bottom:1rem">استخدم هذي البيانات للدخول على حساب التجربة:</p>
+          <div style="background:#F8FAFC;border:1px solid #E5E9F0;border-radius:10px;padding:1rem;text-align:right;margin-bottom:1.5rem">
+            <p style="margin:0 0 .5rem;font-size:.88rem;color:var(--dark)"><strong>البريد:</strong> <span dir="ltr">demo@hwkm.net</span></p>
+            <p style="margin:0;font-size:.88rem;color:var(--dark)"><strong>كلمة المرور:</strong> <span dir="ltr">Demo@2026</span></p>
+          </div>
+          <a href="https://hwkm.net" target="_blank" rel="noopener" class="btn-p" style="width:100%;text-align:center">تسجيل الدخول الآن</a>
+        </div>`;
+    })
+    .catch(()=>{
+      btn.disabled = false;
+      btn.textContent = 'حدث خطأ، حاول مرة أخرى';
+      setTimeout(()=>{ btn.textContent = orig; }, 2500);
+    });
+}
 function handleContactSubmit(e){
   e.preventDefault();
   const form = e.target;
