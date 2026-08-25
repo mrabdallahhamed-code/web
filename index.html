@@ -151,7 +151,25 @@ section{padding:100px 0;scroll-margin-top:72px}
 
 #partners{background:var(--off)}
 .prt-slots{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;margin-top:3rem}
-.prt-slot{background:#fff;border:2px dashed #d0d9e8;border-radius:12px;height:110px;display:flex;align-items:center;justify-content:center;transition:all .3s}
+.prt-slot{background:#fff;border:2px dashed #d0d9e8;border-radius:12px;height:110px;display:flex;align-items:center;justify-content:center;transition:all .3s;padding:1rem}
+.prt-slot.filled{border-style:solid;border-color:#e8eef8}
+.prt-slot.filled:hover{border-color:var(--gold)}
+.prt-slot img{max-width:100%;max-height:60px;object-fit:contain}
+
+/* ── PARTNERS MARQUEE ── */
+.prt-marquee{overflow:hidden;position:relative;margin-top:3rem;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);
+  mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
+.prt-marquee-track{display:flex;align-items:center;gap:1.1rem;width:max-content;direction:ltr;
+  animation:prtScroll 32s linear infinite}
+.prt-marquee:hover .prt-marquee-track{animation-play-state:paused}
+@keyframes prtScroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.prt-pill{display:inline-flex;align-items:center;gap:.55rem;background:#fff;border:1px solid #e8eef8;
+  border-radius:999px;padding:.95rem 1.7rem;font-weight:800;font-size:.88rem;color:var(--dark);
+  box-shadow:0 4px 18px rgba(13,36,71,.06);white-space:nowrap;flex-shrink:0;direction:rtl;transition:all .25s}
+.prt-pill:hover{border-color:var(--gold);box-shadow:0 8px 24px rgba(184,151,42,.16);transform:translateY(-2px)}
+.prt-dot{width:8px;height:8px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gold2));flex-shrink:0}
+@media(prefers-reduced-motion:reduce){.prt-marquee-track{animation:none;flex-wrap:wrap;justify-content:center}}
 .prt-slot:hover{border-color:var(--gold);box-shadow:0 8px 24px rgba(13,36,71,.08)}
 .prt-ph{font-size:.85rem;color:var(--gray);font-weight:600;text-align:center;padding:1rem}
 
@@ -538,12 +556,20 @@ section{padding:60px 0}
       <h2 class="stitle" style="text-align:center" data-en="We Take Pride in Our Strategic Partnerships">نفخر بشراكاتنا الاستراتيجية</h2>
       <p class="ssub" style="text-align:center;margin:0 auto" data-en="We work with a number of strategic partners to deliver the highest quality service that suits our clients.">نعمل مع عدد من الشركاء الاستراتيجيين لنقدم خدمة على أعلى جودة تناسب عملاؤنا.</p>
     </div>
-    <div class="prt-slots reveal">
-      <div class="prt-slot"><div class="prt-ph" data-en="Strategic Partner">شريك استراتيجي</div></div>
-      <div class="prt-slot"><div class="prt-ph">شريك استراتيجي</div></div>
-      <div class="prt-slot"><div class="prt-ph">شريك استراتيجي</div></div>
-      <div class="prt-slot"><div class="prt-ph">شريك استراتيجي</div></div>
+    <div class="prt-marquee reveal" id="prtMarquee">
+      <div class="prt-marquee-track" id="prtMarqueeTrack">
+        <!-- filled by JS from the PARTNERS list -->
+        <div class="prt-pill"><span class="prt-dot"></span>شريك استراتيجي</div>
+        <div class="prt-pill"><span class="prt-dot"></span>شريك استراتيجي</div>
+        <div class="prt-pill"><span class="prt-dot"></span>شريك استراتيجي</div>
+        <div class="prt-pill"><span class="prt-dot"></span>شريك استراتيجي</div>
+      </div>
     </div>
+    <noscript>
+      <div class="prt-slots">
+        <div class="prt-slot"><div class="prt-ph">شريك استراتيجي</div></div>
+      </div>
+    </noscript>
     <p style="text-align:center;margin-top:2rem;color:var(--gray);font-size:.9rem" data-en="Interested in joining HWKM's success partners? "><span data-en-inline>هل أنت مهتم بالانضمام لشركاء نجاح حوكم؟</span> <a href="#contact" style="color:var(--gold);font-weight:700" data-en="Contact Us">تواصل معنا</a></p>
   </div>
 </section>
@@ -847,6 +873,41 @@ function toggleMobileMenu(){
 document.querySelectorAll('.nav-links a').forEach(function(a){
   a.addEventListener('click', closeMobileMenu);
 });
+
+// ===== Strategic partners: edit this list to update the scrolling marquee =====
+// Each entry needs a name. logo (image URL) is optional — if given, it replaces
+// the text pill with a logo image. url is optional (makes the pill clickable).
+const PARTNERS = [
+  { name: "اتقان لخدمات الأعمال" },
+  { name: "مؤسسة الدراسات الحديثة" },
+  { name: "شركة ريوسيرف اندستريال سوليوشنز" },
+  { name: "شركة القدرة المحركة للتجارة" },
+  { name: "شركة ركاز نجد" },
+  { name: "مؤسسة روح الجنوب لتجارة الأغذية" },
+  { name: "مؤسسة النخبة الاستثمارية" },
+  { name: "شركة تكافؤ للمحاماة والاستشارات القانونية" },
+];
+(function renderPartnersMarquee(){
+  const track = document.getElementById('prtMarqueeTrack');
+  if(!track || !PARTNERS.length) return;
+  function esc(s){
+    return String(s==null?"":s).replace(/[&<>"']/g, function(c){
+      return {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c];
+    });
+  }
+  function pillHTML(p){
+    const inner = p.logo
+      ? '<img src="'+esc(p.logo)+'" alt="'+esc(p.name||'شريك')+'" style="height:28px;max-width:140px;object-fit:contain">'
+      : '<span class="prt-dot"></span>'+esc(p.name||'شريك استراتيجي');
+    const tag = p.url ? 'a' : 'div';
+    const href = p.url ? ' href="'+esc(p.url)+'" target="_blank" rel="noopener"' : '';
+    const style = p.url ? ' style="text-decoration:none;color:inherit;cursor:pointer"' : '';
+    return '<'+tag+' class="prt-pill"'+href+style+'>'+inner+'</'+tag+'>';
+  }
+  // Render the list TWICE back-to-back so the -50% loop is perfectly seamless.
+  const once = PARTNERS.map(pillHTML).join('');
+  track.innerHTML = once + once;
+})();
 
 // ===== Live feed: opted-in client announcements & upcoming AGMs from the HWKM platform =====
 // Reads ONLY two public, read-only Supabase views (public_site_announcements / public_site_meetings)
