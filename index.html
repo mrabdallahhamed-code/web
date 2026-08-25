@@ -133,24 +133,21 @@ section{padding:100px 0;scroll-margin-top:72px}
 .val-text h4{color:#fff;font-size:1rem;font-weight:700;margin-bottom:4px}
 .val-text p{color:rgba(255,255,255,.6);font-size:.88rem;line-height:1.6}
 
-#services{background:#fff;overflow:hidden}
-#services .container{padding-bottom:0}
+#services{background:#fff}
+#services .container{padding-bottom:3rem}
 
-/* ── SERVICES MARQUEE (continuous scroll; click a card to open its details) ── */
-.srv-marquee{overflow:hidden;position:relative;margin-top:3.5rem;padding:1rem 0 3rem;
-  -webkit-mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent);
-  mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent)}
-.srv-marquee-track{display:flex;flex-wrap:nowrap;gap:1.6rem;width:max-content;will-change:transform}
+/* ── SERVICES: static grid; click a card to open its details ── */
+.srv-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.4rem;margin-top:3.5rem}
 
-.srv-mcard{position:relative;flex-shrink:0;width:290px;height:220px;border-radius:20px;cursor:pointer;
+.srv-mcard{position:relative;border-radius:20px;cursor:pointer;
   background:linear-gradient(145deg,#f8f9fc,#eef1f8);box-shadow:0 4px 20px rgba(13,36,71,0.08);
   transition:box-shadow .3s,transform .3s;display:flex;flex-direction:column;align-items:center;justify-content:center;
-  text-align:center;padding:1.8rem}
+  text-align:center;padding:1.8rem 1.2rem;min-height:210px}
 .srv-mcard::before{content:'';position:absolute;top:0;right:0;width:100%;height:4px;border-radius:20px 20px 0 0;background:linear-gradient(90deg,var(--gold),var(--gold2))}
 .srv-mcard:hover{box-shadow:0 18px 40px rgba(13,36,71,.16);transform:translateY(-4px)}
-.srv-mcard .srv-num{font-size:2.6rem;font-weight:900;color:var(--light);line-height:1;margin-bottom:.4rem;font-family:'Amiri',serif}
-.srv-mcard .srv-icon-wrap{width:56px;height:56px;background:linear-gradient(135deg,var(--dark),var(--blue2));border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;margin-bottom:.9rem;box-shadow:0 4px 12px rgba(13,36,71,0.2)}
-.srv-mcard h3{font-size:1.05rem;font-weight:800;color:var(--dark);margin-bottom:.5rem}
+.srv-mcard .srv-num{font-size:2.4rem;font-weight:900;color:var(--light);line-height:1;margin-bottom:.4rem;font-family:'Amiri',serif}
+.srv-mcard .srv-icon-wrap{width:52px;height:52px;background:linear-gradient(135deg,var(--dark),var(--blue2));border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;margin-bottom:.9rem;box-shadow:0 4px 12px rgba(13,36,71,0.2)}
+.srv-mcard h3{font-size:1rem;font-weight:800;color:var(--dark);margin-bottom:.5rem}
 .srv-mcard .srv-hint{display:inline-flex;align-items:center;gap:4px;font-size:.74rem;font-weight:700;color:var(--gold)}
 
 .srv-list{list-style:none;display:flex;flex-direction:column;gap:4px;text-align:right}
@@ -158,18 +155,15 @@ section{padding:100px 0;scroll-margin-top:72px}
 .srv-list li::before{content:'✓';color:var(--gold);font-weight:700;flex-shrink:0}
 
 /* WHY HWKM / advantages */
-#advantages{overflow:hidden;position:relative}
 #advantages .ssub{max-width:640px}
-.adv-marquee{overflow:hidden;position:relative;margin-top:3.5rem;padding-bottom:.5rem}
-.adv-marquee-track{display:flex;flex-wrap:nowrap;gap:1.3rem;width:max-content;will-change:transform}
+.adv-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.1rem;margin-top:3.5rem}
 
-.adv-mcard{position:relative;flex-shrink:0;width:250px;height:130px;border-radius:16px;cursor:pointer;
+.adv-mcard{position:relative;border-radius:16px;cursor:pointer;
   background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);transition:all .3s;
-  display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:1rem;gap:.5rem}
+  display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:1.3rem 1rem;gap:.5rem;min-height:130px}
 .adv-mcard:hover{background:rgba(255,255,255,.09);border-color:rgba(212,175,55,.35);transform:translateY(-3px)}
 .adv-icon{width:42px;height:42px;flex-shrink:0;background:rgba(212,175,55,.16);border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:1.25rem}
 .adv-mcard h4{color:#fff;font-size:.88rem;font-weight:800}
-@media(prefers-reduced-motion:reduce){.srv-marquee-track,.adv-marquee-track,.prt-marquee-track{transform:none!important}}
 
 #partners{background:var(--off)}
 .prt-slots{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;margin-top:3rem}
@@ -178,14 +172,11 @@ section{padding:100px 0;scroll-margin-top:72px}
 .prt-slot.filled:hover{border-color:var(--gold)}
 .prt-slot img{max-width:100%;max-height:60px;object-fit:contain}
 
-/* ── PARTNERS MARQUEE ── */
-.prt-marquee{overflow:hidden;position:relative;margin-top:3rem;
-  -webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);
-  mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
-.prt-marquee-track{display:flex;align-items:center;gap:1.1rem;width:max-content;will-change:transform}
+/* ── PARTNERS: static wrapped row, all names always visible ── */
+.prt-pillrow{display:flex;flex-wrap:wrap;justify-content:center;gap:1rem;margin-top:3rem}
 .prt-pill{display:inline-flex;align-items:center;gap:.55rem;background:#fff;border:1px solid #e8eef8;
   border-radius:999px;padding:.95rem 1.7rem;font-weight:800;font-size:.88rem;color:var(--dark);
-  box-shadow:0 4px 18px rgba(13,36,71,.06);white-space:nowrap;flex-shrink:0;transition:all .25s}
+  box-shadow:0 4px 18px rgba(13,36,71,.06);white-space:nowrap;transition:all .25s}
 .prt-pill:hover{border-color:var(--gold);box-shadow:0 8px 24px rgba(184,151,42,.16);transform:translateY(-2px)}
 .prt-dot{width:8px;height:8px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gold2));flex-shrink:0}
 .prt-slot:hover{border-color:var(--gold);box-shadow:0 8px 24px rgba(13,36,71,.08)}
@@ -332,8 +323,8 @@ nav{padding:0 1.2rem}
 .about-grid,.contact-grid{grid-template-columns:1fr;gap:2rem}
 .vision-grid{grid-template-columns:1fr}
 .values-grid{grid-template-columns:1fr}
-.srv-mcard{width:230px;height:200px}
-.adv-mcard{width:210px;height:120px}
+.srv-grid{grid-template-columns:repeat(2,1fr)}
+.adv-grid{grid-template-columns:repeat(2,1fr)}
 .blog-grid,.faq-grid{grid-template-columns:1fr}
 .footer-grid{grid-template-columns:1fr;gap:2rem}
 .prt-slots{grid-template-columns:repeat(2,1fr)}
@@ -492,9 +483,7 @@ section{padding:60px 0}
     <div class="stag" data-en="Our Services">خدماتنا</div>
     <h2 class="stitle" data-en="HWKM Integrated Solutions">حلول حوكم المتكاملة</h2>
     <p class="ssub" data-en="Seven solutions in one platform — built for the Saudi market and aligned with CMA regulations from day one. Tap any solution to see how it works for you.">سبعة حلول في منصة واحدة — مبنية للسوق السعودي ومتوافقة مع لائحة هيئة السوق المالية من اليوم الأول. اضغط على أي خدمة لتشوف كيف تخدمك.</p>
-  </div>
-  <div class="srv-marquee" id="srvMarquee">
-    <div class="srv-marquee-track" id="srvTrack"></div>
+    <div class="srv-grid" id="srvTrack"></div>
   </div>
 </section>
 
@@ -504,9 +493,7 @@ section{padding:60px 0}
     <div class="stag" style="color:var(--gold3)" data-en="Why HWKM">لماذا حوكم</div>
     <h2 class="stitle" style="color:#fff" data-en="What Sets Us Apart">مميزاتنا</h2>
     <p class="ssub" style="color:var(--gray2)" data-en="Not just features — the reasons our clients never go back to their old way of working." data-en-inline>ليست مجرد ميزات — هذي الأسباب اللي تخلي عملاءنا ما يرجعون لطريقتهم القديمة.</p>
-  </div>
-  <div class="adv-marquee" id="advMarquee">
-    <div class="adv-marquee-track" id="advTrack"></div>
+    <div class="adv-grid" id="advTrack"></div>
   </div>
 </section>
 
@@ -518,14 +505,12 @@ section{padding:60px 0}
       <h2 class="stitle" style="text-align:center" data-en="We Take Pride in Our Strategic Partnerships">نفخر بشراكاتنا الاستراتيجية</h2>
       <p class="ssub" style="text-align:center;margin:0 auto" data-en="We work with a number of strategic partners to deliver the highest quality service that suits our clients.">نعمل مع عدد من الشركاء الاستراتيجيين لنقدم خدمة على أعلى جودة تناسب عملاؤنا.</p>
     </div>
-    <div class="prt-marquee reveal" id="prtMarquee">
-      <div class="prt-marquee-track" id="prtMarqueeTrack">
-        <!-- filled by JS from the PARTNERS list -->
-        <div class="prt-pill"><span class="prt-dot"></span>شريك استراتيجي</div>
-        <div class="prt-pill"><span class="prt-dot"></span>شريك استراتيجي</div>
-        <div class="prt-pill"><span class="prt-dot"></span>شريك استراتيجي</div>
-        <div class="prt-pill"><span class="prt-dot"></span>شريك استراتيجي</div>
-      </div>
+    <div class="prt-pillrow reveal" id="prtMarqueeTrack">
+      <!-- filled by JS from the PARTNERS list -->
+      <div class="prt-pill"><span class="prt-dot"></span>شريك استراتيجي</div>
+      <div class="prt-pill"><span class="prt-dot"></span>شريك استراتيجي</div>
+      <div class="prt-pill"><span class="prt-dot"></span>شريك استراتيجي</div>
+      <div class="prt-pill"><span class="prt-dot"></span>شريك استراتيجي</div>
     </div>
     <noscript>
       <div class="prt-slots">
@@ -962,17 +947,14 @@ const ADVANTAGES = [
 
   const srvTrack = document.getElementById('srvTrack');
   if(srvTrack){
-    const once = SERVICES.map(serviceCardHTML).join('');
-    srvTrack.innerHTML = once + once; // duplicated so the loop is seamless
+    srvTrack.innerHTML = SERVICES.map(serviceCardHTML).join('');
   }
   const advTrack = document.getElementById('advTrack');
   if(advTrack){
-    const once = ADVANTAGES.map(advCardHTML).join('');
-    advTrack.innerHTML = once + once;
+    advTrack.innerHTML = ADVANTAGES.map(advCardHTML).join('');
   }
 
-  // ===== Details modal: clicking any service/advantage card opens its full details.
-  // The marquee strips themselves never pause — they scroll continuously at all times. =====
+  // ===== Details modal: clicking any service/advantage card opens its full details =====
   const detailsOverlay = document.getElementById('detailsOverlay');
   const detailsBody = document.getElementById('detailsBody');
   function openDetailsModal(html){
@@ -1014,38 +996,6 @@ const ADVANTAGES = [
       return;
     }
   });
-
-  // ===== Robust marquee engine: measures REAL pixel width after fonts finish loading,
-  // then drives a Web Animations API animation by exact px — immune to the seam glitches
-  // that percentage-based CSS keyframes get when web-font metrics shift late. =====
-  function setupMarquee(track, pxPerSecond){
-    if(!track) return;
-    let anim = null;
-    function start(){
-      if(anim){ anim.cancel(); }
-      const setWidth = track.scrollWidth / 2; // content is duplicated exactly twice
-      if(!setWidth) return;
-      const durationMs = (setWidth / pxPerSecond) * 1000;
-      anim = track.animate(
-        [{ transform:'translateX(0px)' }, { transform:'translateX(-'+setWidth+'px)' }],
-        { duration:durationMs, iterations:Infinity, easing:'linear' }
-      );
-    }
-    const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if(reduceMotion) return;
-    if(document.fonts && document.fonts.ready){
-      document.fonts.ready.then(start).catch(start);
-    } else {
-      start();
-    }
-    let resizeTimer;
-    window.addEventListener('resize', function(){
-      clearTimeout(resizeTimer);
-      resizeTimer = setTimeout(start, 300);
-    });
-  }
-  setupMarquee(srvTrack, 42);
-  setupMarquee(advTrack, 34);
 })();
 
 // ===== Strategic partners: edit this list to update the scrolling marquee =====
@@ -1061,7 +1011,7 @@ const PARTNERS = [
   { name: "مؤسسة النخبة الاستثمارية" },
   { name: "شركة تكافؤ للمحاماة والاستشارات القانونية" },
 ];
-(function renderPartnersMarquee(){
+(function renderPartnersRow(){
   const track = document.getElementById('prtMarqueeTrack');
   if(!track || !PARTNERS.length) return;
   function esc(s){
@@ -1078,34 +1028,8 @@ const PARTNERS = [
     const style = p.url ? ' style="text-decoration:none;color:inherit;cursor:pointer"' : '';
     return '<'+tag+' class="prt-pill"'+href+style+'>'+inner+'</'+tag+'>';
   }
-  // Render the list TWICE back-to-back so the loop is exactly seamless.
-  const once = PARTNERS.map(pillHTML).join('');
-  track.innerHTML = once + once;
-
-  // Same robust, font-safe marquee engine used for services/advantages.
-  const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if(reduceMotion) return;
-  let anim = null;
-  function start(){
-    if(anim){ anim.cancel(); }
-    const setWidth = track.scrollWidth / 2;
-    if(!setWidth) return;
-    const durationMs = (setWidth / 30) * 1000; // ~30px/s
-    anim = track.animate(
-      [{ transform:'translateX(0px)' }, { transform:'translateX(-'+setWidth+'px)' }],
-      { duration:durationMs, iterations:Infinity, easing:'linear' }
-    );
-  }
-  if(document.fonts && document.fonts.ready){
-    document.fonts.ready.then(start).catch(start);
-  } else {
-    start();
-  }
-  let resizeTimer;
-  window.addEventListener('resize', function(){
-    clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(start, 300);
-  });
+  // Rendered once — every partner is always visible, wrapped into as many rows as needed.
+  track.innerHTML = PARTNERS.map(pillHTML).join('');
 })();
 
 // ===== Live feed: opted-in client announcements & upcoming AGMs from the HWKM platform =====
