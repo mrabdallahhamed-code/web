@@ -136,19 +136,29 @@ section{padding:100px 0;scroll-margin-top:72px}
 #services{background:#fff}
 #services .container{padding-bottom:3rem}
 
-/* ── SERVICES: static grid; click a card to open its details ── */
-.srv-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.4rem;margin-top:3.5rem}
+/* ── SERVICES: static grid; click a card to expand it in place ── */
+.srv-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.4rem;margin-top:3.5rem;align-items:start}
 
 .srv-mcard{position:relative;border-radius:20px;cursor:pointer;
   background:linear-gradient(145deg,#f8f9fc,#eef1f8);box-shadow:0 4px 20px rgba(13,36,71,0.08);
-  transition:box-shadow .3s,transform .3s;display:flex;flex-direction:column;align-items:center;justify-content:center;
-  text-align:center;padding:1.8rem 1.2rem;min-height:210px}
+  transition:box-shadow .3s,transform .3s;overflow:hidden}
 .srv-mcard::before{content:'';position:absolute;top:0;right:0;width:100%;height:4px;border-radius:20px 20px 0 0;background:linear-gradient(90deg,var(--gold),var(--gold2))}
-.srv-mcard:hover{box-shadow:0 18px 40px rgba(13,36,71,.16);transform:translateY(-4px)}
+.srv-mcard:hover{box-shadow:0 18px 40px rgba(13,36,71,.16)}
+.srv-mcard:not(.open):hover{transform:translateY(-4px)}
+
+.srv-mcard-head{display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;padding:1.8rem 1.2rem;min-height:210px}
+.srv-mcard.open .srv-mcard-head{padding-bottom:.6rem;min-height:0}
 .srv-mcard .srv-num{font-size:2.4rem;font-weight:900;color:var(--light);line-height:1;margin-bottom:.4rem;font-family:'Amiri',serif}
 .srv-mcard .srv-icon-wrap{width:52px;height:52px;background:linear-gradient(135deg,var(--dark),var(--blue2));border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;margin-bottom:.9rem;box-shadow:0 4px 12px rgba(13,36,71,0.2)}
 .srv-mcard h3{font-size:1rem;font-weight:800;color:var(--dark);margin-bottom:.5rem}
 .srv-mcard .srv-hint{display:inline-flex;align-items:center;gap:4px;font-size:.74rem;font-weight:700;color:var(--gold)}
+.srv-mcard .srv-hint-arrow{transition:transform .3s ease;display:inline-block}
+.srv-mcard.open .srv-hint-arrow{transform:rotate(180deg)}
+
+.srv-mcard-body{max-height:0;opacity:0;overflow:hidden;transition:max-height .4s ease,opacity .3s ease;padding:0 1.6rem}
+.srv-mcard.open .srv-mcard-body{max-height:520px;opacity:1;padding:0 1.6rem 1.6rem}
+.srv-mcard-body p{color:var(--gray);line-height:1.7;font-size:.85rem;margin-bottom:.8rem;text-align:center}
 
 .srv-list{list-style:none;display:flex;flex-direction:column;gap:4px;text-align:right}
 .srv-list li{font-size:.8rem;color:#555;display:flex;align-items:flex-start;gap:6px;line-height:1.55}
@@ -156,14 +166,19 @@ section{padding:100px 0;scroll-margin-top:72px}
 
 /* WHY HWKM / advantages */
 #advantages .ssub{max-width:640px}
-.adv-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.1rem;margin-top:3.5rem}
+.adv-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.1rem;margin-top:3.5rem;align-items:start}
 
 .adv-mcard{position:relative;border-radius:16px;cursor:pointer;
-  background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);transition:all .3s;
-  display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:1.3rem 1rem;gap:.5rem;min-height:130px}
-.adv-mcard:hover{background:rgba(255,255,255,.09);border-color:rgba(212,175,55,.35);transform:translateY(-3px)}
+  background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);transition:all .3s;overflow:hidden}
+.adv-mcard:hover{background:rgba(255,255,255,.09);border-color:rgba(212,175,55,.35)}
+.adv-mcard:not(.open):hover{transform:translateY(-3px)}
+.adv-mcard-head{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:1.3rem 1rem;gap:.5rem;min-height:130px}
+.adv-mcard.open .adv-mcard-head{min-height:0;padding-bottom:.6rem}
 .adv-icon{width:42px;height:42px;flex-shrink:0;background:rgba(212,175,55,.16);border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:1.25rem}
 .adv-mcard h4{color:#fff;font-size:.88rem;font-weight:800}
+.adv-mcard-body{max-height:0;opacity:0;overflow:hidden;transition:max-height .4s ease,opacity .3s ease;padding:0 1.1rem}
+.adv-mcard.open .adv-mcard-body{max-height:260px;opacity:1;padding:0 1.1rem 1.1rem}
+.adv-mcard-body p{color:rgba(255,255,255,.7);line-height:1.65;font-size:.8rem;text-align:center}
 
 #partners{background:var(--off)}
 .prt-slots{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;margin-top:3rem}
@@ -188,7 +203,8 @@ section{padding:100px 0;scroll-margin-top:72px}
 .clv-col{background:#fff;border-radius:18px;padding:1.6rem;box-shadow:0 4px 24px rgba(13,36,71,.06);border:1px solid #e8eef8}
 .clv-col-head{display:flex;align-items:center;gap:.6rem;margin-bottom:1.1rem;padding-bottom:1rem;border-bottom:1px solid #eef1f8}
 .clv-col-icon{font-size:1.3rem}
-.clv-col-head h3{font-size:1.05rem;font-weight:800;color:var(--dark)}
+.clv-col-head h3{font-size:1.05rem;font-weight:800;color:var(--dark);flex:1}
+.clv-count{font-size:.72rem;font-weight:800;color:var(--gold);background:rgba(184,151,42,.1);border-radius:999px;padding:.25rem .65rem;flex-shrink:0}
 .clv-list{display:flex;flex-direction:column;gap:.65rem;max-height:420px;overflow-y:auto}
 .clv-list::-webkit-scrollbar{width:4px}
 .clv-list::-webkit-scrollbar-thumb{background:var(--gold2);border-radius:2px}
@@ -201,6 +217,10 @@ section{padding:100px 0;scroll-margin-top:72px}
 .clv-item-date{font-size:.72rem;color:var(--gray);margin-top:3px}
 .clv-item a.clv-item-link{font-size:.72rem;color:var(--gold);font-weight:700;white-space:nowrap;flex-shrink:0;align-self:center}
 .clv-empty{text-align:center;color:var(--gray);font-size:.85rem;padding:2.5rem 1rem}
+.clv-more{display:block;width:100%;margin-top:.9rem;padding:.7rem;border-radius:10px;border:1px solid #e8eef8;
+  background:#fff;color:var(--blue2);font-weight:700;font-size:.8rem;font-family:inherit;cursor:pointer;transition:all .2s}
+.clv-more:hover{border-color:var(--gold);color:var(--gold)}
+.clv-more:disabled{opacity:.5;cursor:default}
 @media(max-width:900px){.clv-grid{grid-template-columns:1fr}}
 
 #faq{background:#fff}
@@ -260,17 +280,6 @@ footer{background:#070f1e;border-top:1px solid rgba(184,151,42,.2);padding:3rem 
 .demo-close{position:absolute;top:1rem;left:1rem;background:none;border:none;font-size:1.1rem;cursor:pointer;color:var(--gray);width:32px;height:32px;border-radius:50%;transition:background .2s}
 .demo-close:hover{background:rgba(0,0,0,.05)}
 
-/* ====== SERVICE / ADVANTAGE DETAILS MODAL ====== */
-.dm-overlay{display:none;position:fixed;inset:0;background:rgba(10,22,40,.75);backdrop-filter:blur(4px);z-index:2100;align-items:center;justify-content:center;padding:1.5rem}
-.dm-overlay.open{display:flex}
-.dm-modal{background:#fff;border-radius:18px;max-width:480px;width:100%;padding:2.2rem;position:relative;max-height:85vh;overflow-y:auto;text-align:center}
-.dm-close{position:absolute;top:1rem;left:1rem;background:none;border:none;font-size:1.1rem;cursor:pointer;color:var(--gray);width:32px;height:32px;border-radius:50%;transition:background .2s}
-.dm-close:hover{background:rgba(0,0,0,.05)}
-.dm-icon-wrap{width:60px;height:60px;margin:0 auto 1rem;background:linear-gradient(135deg,var(--dark),var(--blue2));border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:1.7rem;box-shadow:0 4px 14px rgba(13,36,71,.2)}
-.dm-modal h3{font-size:1.2rem;font-weight:800;color:var(--dark);margin-bottom:.8rem}
-.dm-modal .dm-desc{color:var(--gray);line-height:1.8;font-size:.92rem;margin-bottom:1.1rem}
-.dm-modal .srv-list{text-align:right;margin-top:.3rem}
-.dm-modal .srv-list li{font-size:.87rem}
 .demo-body .fg{margin-bottom:1rem}
 .demo-body label{display:block;font-size:.85rem;color:var(--gray);margin-bottom:.4rem}
 .demo-body input{width:100%;padding:.7rem 1rem;border:1px solid #ddd;border-radius:8px;font-family:'Tajawal',sans-serif;font-size:.9rem;color:var(--dark);background:#fff}
@@ -366,7 +375,7 @@ section{padding:60px 0}
     <li><a href="#services" data-en="Services">خدماتنا</a></li>
     <li><a href="#advantages" data-en="Why HWKM">مميزاتنا</a></li>
     <li><a href="#partners" data-en="Partners">شركاؤنا</a></li>
-    <li><a href="#clients-live" data-en="Our Listed Clients">عملاؤنا المدرجون</a></li>
+    <li><a href="#clients-live" data-en="Tadawul Pulse">نبض تداول</a></li>
     <li><a href="#faq" data-en="FAQ">الأسئلة الشائعة</a></li>
     <li><a href="#blog" data-en="Blog">المدونة</a></li>
     <li><a href="#" onclick="openDemoModal();return false;" class="nav-platform" data-en="Try the Platform">جرّب المنصة</a></li>
@@ -524,8 +533,8 @@ section{padding:60px 0}
 <!-- LIVE CLIENTS FEED: TADAWUL ANNOUNCEMENTS + UPCOMING AGMs -->
 <section id="clients-live" style="background:var(--offwhite)">
   <div class="container">
-    <div class="stag" data-en="Live From Our Platform">مباشر من منصتنا</div>
-    <h2 class="stitle" data-en="Our Listed Clients on Tadawul">عملاؤنا المدرجون على تداول</h2>
+    <div class="stag" data-en="Live Transparency">شفافية حية</div>
+    <h2 class="stitle" data-en="Tadawul Pulse">نبض تداول</h2>
     <p class="ssub" data-en="A live feed of official announcements and upcoming general assemblies generated by our clients through the platform — real proof of trust from listed companies." data-en-inline>موجز مباشر للإعلانات الرسمية والجمعيات العامة القادمة التي يولّدها عملاؤنا عبر المنصة — دليل ثقة حقيقي من شركات مدرجة تستخدم حوكم.</p>
 
     <div class="clv-grid">
@@ -533,19 +542,23 @@ section{padding:60px 0}
         <div class="clv-col-head">
           <span class="clv-col-icon">📢</span>
           <h3 data-en="Latest Client Announcements">أحدث إعلانات عملائنا</h3>
+          <span class="clv-count" id="clvAnnCount"></span>
         </div>
         <div id="clvAnnList" class="clv-list">
           <div class="clv-empty" data-en="Loading latest announcements…">جارِ تحميل أحدث الإعلانات…</div>
         </div>
+        <button class="clv-more" id="clvAnnMore" style="display:none" data-en="Show more">عرض المزيد</button>
       </div>
       <div class="clv-col reveal">
         <div class="clv-col-head">
           <span class="clv-col-icon">🤝</span>
           <h3 data-en="Upcoming General Assemblies">الجمعيات العامة القادمة</h3>
+          <span class="clv-count" id="clvMeetCount"></span>
         </div>
         <div id="clvMeetList" class="clv-list">
           <div class="clv-empty" data-en="Loading upcoming meetings…">جارِ تحميل الاجتماعات القادمة…</div>
         </div>
+        <button class="clv-more" id="clvMeetMore" style="display:none" data-en="Show more">عرض المزيد</button>
       </div>
     </div>
   </div>
@@ -670,14 +683,6 @@ section{padding:60px 0}
     </div>
   </div>
 </footer>
-
-<!-- SERVICE / ADVANTAGE DETAILS MODAL -->
-<div class="dm-overlay" id="detailsOverlay" onclick="if(event.target===this)closeDetailsModal()">
-  <div class="dm-modal">
-    <button class="dm-close" onclick="closeDetailsModal()" aria-label="Close">✕</button>
-    <div id="detailsBody"></div>
-  </div>
-</div>
 
 <!-- DEMO LEAD MODAL -->
 <div class="demo-overlay" id="demoOverlay" onclick="if(event.target===this)closeDemoModal()">
@@ -928,20 +933,35 @@ const ADVANTAGES = [
     });
   }
 
-  function serviceCardHTML(s, idx){
+  function serviceCardHTML(s){
     const borderStyle = s.highlight ? ' style="border:1px solid rgba(212,175,55,.35)"' : '';
-    return '<div class="srv-mcard" data-svc="'+idx+'"'+borderStyle+'>'
-      + '<div class="srv-num">'+s.num+'</div>'
-      + '<div class="srv-icon-wrap">'+s.icon+'</div>'
-      + '<h3 data-en="'+esc(s.title.en)+'">'+esc(s.title.ar)+'</h3>'
-      + '<div class="srv-hint" data-en="View details">التفاصيل ›</div>'
+    const listHTML = s.list.map(function(li){
+      const style = li.strong ? ' style="font-weight:800;color:var(--dark)"' : '';
+      return '<li'+style+' data-en="'+esc(li.en)+'">'+esc(li.ar)+'</li>';
+    }).join('');
+    return '<div class="srv-mcard"'+borderStyle+'>'
+      + '<div class="srv-mcard-head">'
+        + '<div class="srv-num">'+s.num+'</div>'
+        + '<div class="srv-icon-wrap">'+s.icon+'</div>'
+        + '<h3 data-en="'+esc(s.title.en)+'">'+esc(s.title.ar)+'</h3>'
+        + '<div class="srv-hint" data-en="Details">التفاصيل <span class="srv-hint-arrow">▾</span></div>'
+      + '</div>'
+      + '<div class="srv-mcard-body">'
+        + '<p data-en="'+esc(s.desc.en)+'">'+esc(s.desc.ar)+'</p>'
+        + '<ul class="srv-list">'+listHTML+'</ul>'
+      + '</div>'
     + '</div>';
   }
 
-  function advCardHTML(a, idx){
-    return '<div class="adv-mcard" data-adv="'+idx+'">'
-      + '<div class="adv-icon">'+a.icon+'</div>'
-      + '<h4 data-en="'+esc(a.title.en)+'">'+esc(a.title.ar)+'</h4>'
+  function advCardHTML(a){
+    return '<div class="adv-mcard">'
+      + '<div class="adv-mcard-head">'
+        + '<div class="adv-icon">'+a.icon+'</div>'
+        + '<h4 data-en="'+esc(a.title.en)+'">'+esc(a.title.ar)+'</h4>'
+      + '</div>'
+      + '<div class="adv-mcard-body">'
+        + '<p data-en="'+esc(a.desc.en)+'">'+esc(a.desc.ar)+'</p>'
+      + '</div>'
     + '</div>';
   }
 
@@ -954,48 +974,19 @@ const ADVANTAGES = [
     advTrack.innerHTML = ADVANTAGES.map(advCardHTML).join('');
   }
 
-  // ===== Details modal: clicking any service/advantage card opens its full details =====
-  const detailsOverlay = document.getElementById('detailsOverlay');
-  const detailsBody = document.getElementById('detailsBody');
-  function openDetailsModal(html){
-    if(!detailsOverlay || !detailsBody) return;
-    detailsBody.innerHTML = html;
-    detailsOverlay.classList.add('open');
+  // ===== Click a card to expand it in place (accordion). Only one open per group. =====
+  function bindAccordion(containerEl, cardSelector){
+    if(!containerEl) return;
+    containerEl.addEventListener('click', function(e){
+      const card = e.target.closest(cardSelector);
+      if(!card) return;
+      const wasOpen = card.classList.contains('open');
+      containerEl.querySelectorAll(cardSelector+'.open').forEach(function(c){ c.classList.remove('open'); });
+      if(!wasOpen) card.classList.add('open');
+    });
   }
-  window.closeDetailsModal = function(){
-    if(detailsOverlay) detailsOverlay.classList.remove('open');
-  };
-  document.addEventListener('click', function(e){
-    const svcCard = e.target.closest('.srv-mcard');
-    if(svcCard){
-      const s = SERVICES[Number(svcCard.dataset.svc)];
-      if(s){
-        const listHTML = s.list.map(function(li){
-          const style = li.strong ? ' style="font-weight:800;color:var(--dark)"' : '';
-          return '<li'+style+' data-en="'+esc(li.en)+'">'+esc(li.ar)+'</li>';
-        }).join('');
-        openDetailsModal(
-          '<div class="dm-icon-wrap">'+s.icon+'</div>'
-          + '<h3 data-en="'+esc(s.title.en)+'">'+esc(s.title.ar)+'</h3>'
-          + '<p class="dm-desc" data-en="'+esc(s.desc.en)+'">'+esc(s.desc.ar)+'</p>'
-          + '<ul class="srv-list">'+listHTML+'</ul>'
-        );
-      }
-      return;
-    }
-    const advCard = e.target.closest('.adv-mcard');
-    if(advCard){
-      const a = ADVANTAGES[Number(advCard.dataset.adv)];
-      if(a){
-        openDetailsModal(
-          '<div class="dm-icon-wrap">'+a.icon+'</div>'
-          + '<h3 data-en="'+esc(a.title.en)+'">'+esc(a.title.ar)+'</h3>'
-          + '<p class="dm-desc" data-en="'+esc(a.desc.en)+'">'+esc(a.desc.ar)+'</p>'
-        );
-      }
-      return;
-    }
-  });
+  bindAccordion(srvTrack, '.srv-mcard');
+  bindAccordion(advTrack, '.adv-mcard');
 })();
 
 // ===== Strategic partners: edit this list to update the scrolling marquee =====
@@ -1047,66 +1038,102 @@ const PARTNERS = [
     });
   }
 
-  async function loadClientAnnouncements(){
-    var box = document.getElementById('clvAnnList');
-    if(!box) return;
-    try{
-      var res = await clvSb.from('public_site_announcements').select('*').order('created_at',{ascending:false}).limit(8);
-      if(res.error) throw res.error;
-      var data = res.data || [];
-      if(data.length === 0){
-        box.innerHTML = '<div class="clv-empty" data-en="No announcements published yet — check back soon.">لا توجد إعلانات معلنة حالياً — تابعونا قريباً.</div>';
-        return;
-      }
-      box.innerHTML = data.map(function(a){
-        var initial = esc((a.company_name||'ش').trim().charAt(0));
-        var d = a.created_at ? new Date(a.created_at).toLocaleDateString('ar-SA') : '';
-        var link = a.file_url ? '<a class="clv-item-link" href="'+esc(a.file_url)+'" target="_blank" rel="noopener" data-en="View">عرض ↗</a>' : '';
-        return '<div class="clv-item">'
-          + '<div class="clv-item-badge">'+initial+'</div>'
-          + '<div class="clv-item-body">'
-            + '<div class="clv-item-company">'+esc(a.company_name)+'</div>'
-            + '<div class="clv-item-type">'+esc(a.announcement_type)+'</div>'
-            + '<div class="clv-item-date">📅 '+esc(d)+'</div>'
-          + '</div>'
-          + link
-        + '</div>';
-      }).join('');
-    }catch(e){
-      box.innerHTML = '<div class="clv-empty" data-en="Announcements unavailable right now.">تعذّر تحميل الإعلانات حالياً.</div>';
-    }
+  const PAGE_SIZE = 6;
+
+  function announcementItemHTML(a){
+    var initial = esc((a.company_name||'ش').trim().charAt(0));
+    var d = a.created_at ? new Date(a.created_at).toLocaleDateString('ar-SA') : '';
+    var link = a.file_url ? '<a class="clv-item-link" href="'+esc(a.file_url)+'" target="_blank" rel="noopener" data-en="View">عرض ↗</a>' : '';
+    return '<div class="clv-item">'
+      + '<div class="clv-item-badge">'+initial+'</div>'
+      + '<div class="clv-item-body">'
+        + '<div class="clv-item-company">'+esc(a.company_name)+'</div>'
+        + '<div class="clv-item-type">'+esc(a.announcement_type)+'</div>'
+        + '<div class="clv-item-date">📅 '+esc(d)+'</div>'
+      + '</div>'
+      + link
+    + '</div>';
   }
 
-  async function loadClientMeetings(){
-    var box = document.getElementById('clvMeetList');
-    if(!box) return;
-    try{
-      var res = await clvSb.from('public_site_meetings').select('*').order('meeting_date',{ascending:true}).limit(8);
-      if(res.error) throw res.error;
-      var data = res.data || [];
-      if(data.length === 0){
-        box.innerHTML = '<div class="clv-empty" data-en="No upcoming general assemblies announced yet.">لا توجد جمعيات عامة قادمة معلنة حالياً.</div>';
-        return;
-      }
-      box.innerHTML = data.map(function(m){
-        var initial = esc((m.company_name||'ش').trim().charAt(0));
-        var when = esc(m.meeting_date||'') + (m.meeting_time ? (' — '+esc(m.meeting_time)) : '');
-        return '<div class="clv-item">'
-          + '<div class="clv-item-badge">'+initial+'</div>'
-          + '<div class="clv-item-body">'
-            + '<div class="clv-item-company">'+esc(m.company_name)+'</div>'
-            + '<div class="clv-item-type">'+esc(m.title||'الجمعية العامة')+'</div>'
-            + '<div class="clv-item-date">📅 '+when+'</div>'
-          + '</div>'
-        + '</div>';
-      }).join('');
-    }catch(e){
-      box.innerHTML = '<div class="clv-empty" data-en="Meetings unavailable right now.">تعذّر تحميل الاجتماعات حالياً.</div>';
-    }
+  function meetingItemHTML(m){
+    var initial = esc((m.company_name||'ش').trim().charAt(0));
+    var when = esc(m.meeting_date||'') + (m.meeting_time ? (' — '+esc(m.meeting_time)) : '');
+    return '<div class="clv-item">'
+      + '<div class="clv-item-badge">'+initial+'</div>'
+      + '<div class="clv-item-body">'
+        + '<div class="clv-item-company">'+esc(m.company_name)+'</div>'
+        + '<div class="clv-item-type">'+esc(m.title||'الجمعية العامة')+'</div>'
+        + '<div class="clv-item-date">📅 '+when+'</div>'
+      + '</div>'
+    + '</div>';
   }
 
-  loadClientAnnouncements();
-  loadClientMeetings();
+  // Generic paginated loader: fetches PAGE_SIZE rows at a time via .range(), shows a
+  // running count badge, and reveals a "Show more" button only while more rows remain —
+  // so the section stays compact and orderly no matter how many clients opt in over time.
+  function makeFeed(opts){
+    var box = document.getElementById(opts.listId);
+    var moreBtn = document.getElementById(opts.moreBtnId);
+    var countEl = document.getElementById(opts.countId);
+    if(!box) return;
+    var offset = 0;
+    var total = 0;
+    var loadedAny = false;
+
+    async function loadPage(){
+      if(moreBtn){ moreBtn.disabled = true; moreBtn.textContent = '...جارِ التحميل'; }
+      try{
+        var res = await clvSb.from(opts.view).select('*', { count:'exact' })
+          .order(opts.orderCol, { ascending: opts.ascending })
+          .range(offset, offset + PAGE_SIZE - 1);
+        if(res.error) throw res.error;
+        var data = res.data || [];
+        total = res.count || data.length;
+
+        if(!loadedAny && data.length === 0){
+          box.innerHTML = '<div class="clv-empty" data-en="'+opts.emptyEn+'">'+opts.emptyAr+'</div>';
+          if(moreBtn) moreBtn.style.display = 'none';
+          return;
+        }
+        if(!loadedAny) box.innerHTML = '';
+        box.insertAdjacentHTML('beforeend', data.map(opts.itemHTML).join(''));
+        loadedAny = true;
+        offset += data.length;
+
+        if(countEl && total) countEl.textContent = total;
+        if(moreBtn){
+          if(offset < total){
+            moreBtn.style.display = 'block';
+            moreBtn.disabled = false;
+            moreBtn.textContent = 'عرض المزيد';
+          } else {
+            moreBtn.style.display = 'none';
+          }
+        }
+      }catch(e){
+        if(!loadedAny) box.innerHTML = '<div class="clv-empty" data-en="'+opts.errorEn+'">'+opts.errorAr+'</div>';
+        if(moreBtn) moreBtn.style.display = 'none';
+      }
+    }
+    if(moreBtn) moreBtn.addEventListener('click', loadPage);
+    loadPage();
+  }
+
+  makeFeed({
+    view:'public_site_announcements', orderCol:'created_at', ascending:false,
+    listId:'clvAnnList', moreBtnId:'clvAnnMore', countId:'clvAnnCount',
+    itemHTML:announcementItemHTML,
+    emptyAr:'لا توجد إعلانات معلنة حالياً — تابعونا قريباً.', emptyEn:'No announcements published yet — check back soon.',
+    errorAr:'تعذّر تحميل الإعلانات حالياً.', errorEn:'Announcements unavailable right now.'
+  });
+
+  makeFeed({
+    view:'public_site_meetings', orderCol:'meeting_date', ascending:true,
+    listId:'clvMeetList', moreBtnId:'clvMeetMore', countId:'clvMeetCount',
+    itemHTML:meetingItemHTML,
+    emptyAr:'لا توجد جمعيات عامة قادمة معلنة حالياً.', emptyEn:'No upcoming general assemblies announced yet.',
+    errorAr:'تعذّر تحميل الاجتماعات حالياً.', errorEn:'Meetings unavailable right now.'
+  });
 })();
 </script>
 </body>
