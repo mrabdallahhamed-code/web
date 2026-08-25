@@ -141,28 +141,28 @@ section{padding:100px 0;scroll-margin-top:72px}
   -webkit-mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent);
   mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent)}
 .srv-marquee-track{display:flex;flex-wrap:nowrap;gap:1.6rem;width:max-content;direction:ltr;animation:srvScroll 52s linear infinite;will-change:transform}
-.srv-marquee:hover .srv-marquee-track{animation-play-state:paused}
+.srv-marquee.is-paused .srv-marquee-track{animation-play-state:paused}
 @keyframes srvScroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
 .srv-mcard{position:relative;direction:rtl;flex-shrink:0;width:290px;height:330px;border-radius:20px;cursor:pointer;
   background:linear-gradient(145deg,#f8f9fc,#eef1f8);box-shadow:0 4px 20px rgba(13,36,71,0.08);
   transition:box-shadow .3s,transform .3s}
 .srv-mcard::before{content:'';position:absolute;top:0;right:0;width:100%;height:4px;border-radius:20px 20px 0 0;background:linear-gradient(90deg,var(--gold),var(--gold2));z-index:2}
-.srv-mcard:hover,.srv-mcard.tap-open{box-shadow:0 22px 50px rgba(13,36,71,.2);transform:translateY(-6px);z-index:3}
+.srv-mcard.tap-open{box-shadow:0 22px 50px rgba(13,36,71,.2);transform:translateY(-6px);z-index:3}
 
 .srv-mcard-face{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;
   text-align:center;padding:1.8rem;transition:opacity .3s ease}
-.srv-mcard:hover .srv-mcard-face,.srv-mcard.tap-open .srv-mcard-face{opacity:0;pointer-events:none}
+.srv-mcard.tap-open .srv-mcard-face{opacity:0;pointer-events:none}
 .srv-mcard-face .srv-num{font-size:2.6rem;font-weight:900;color:var(--light);line-height:1;margin-bottom:.4rem;font-family:'Amiri',serif}
 .srv-mcard-face .srv-icon-wrap{width:56px;height:56px;background:linear-gradient(135deg,var(--dark),var(--blue2));border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;margin-bottom:.9rem;box-shadow:0 4px 12px rgba(13,36,71,0.2)}
 .srv-mcard-face h3{font-size:1.05rem;font-weight:800;color:var(--dark);margin-bottom:.5rem}
 .srv-mcard-face .srv-hint{display:inline-flex;align-items:center;gap:4px;font-size:.74rem;font-weight:700;color:var(--gold)}
 .srv-mcard-face .srv-hint-arrow{transition:transform .3s ease}
-.srv-mcard:hover .srv-hint-arrow,.srv-mcard.tap-open .srv-hint-arrow{transform:translateY(3px)}
+.srv-mcard.tap-open .srv-hint-arrow{transform:translateY(3px)}
 
 .srv-mcard-details{position:absolute;inset:0;padding:1.7rem;opacity:0;transform:translateY(6px);pointer-events:none;
   overflow-y:auto;transition:opacity .3s ease,transform .3s ease}
-.srv-mcard:hover .srv-mcard-details,.srv-mcard.tap-open .srv-mcard-details{opacity:1;transform:translateY(0);pointer-events:auto}
+.srv-mcard.tap-open .srv-mcard-details{opacity:1;transform:translateY(0);pointer-events:auto}
 .srv-mcard-details h3{font-size:.98rem;font-weight:800;color:var(--dark);margin-bottom:.5rem}
 .srv-mcard-details p{color:var(--gray);line-height:1.65;font-size:.8rem;margin-bottom:.7rem}
 .srv-list{list-style:none;display:flex;flex-direction:column;gap:4px}
@@ -176,19 +176,19 @@ section{padding:100px 0;scroll-margin-top:72px}
   -webkit-mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent);
   mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent)}
 .adv-marquee-track{display:flex;flex-wrap:nowrap;gap:1.3rem;width:max-content;direction:ltr;animation:srvScroll 42s linear infinite;will-change:transform}
-.adv-marquee:hover .adv-marquee-track{animation-play-state:paused}
+.adv-marquee.is-paused .adv-marquee-track{animation-play-state:paused}
 
 .adv-mcard{position:relative;direction:rtl;flex-shrink:0;width:250px;height:150px;border-radius:16px;cursor:pointer;
   background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);transition:all .3s}
-.adv-mcard:hover,.adv-mcard.tap-open{background:rgba(255,255,255,.09);border-color:rgba(212,175,55,.35);transform:translateY(-4px)}
+.adv-mcard.tap-open{background:rgba(255,255,255,.09);border-color:rgba(212,175,55,.35);transform:translateY(-4px)}
 .adv-mcard-face{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;
   text-align:center;padding:1rem;gap:.5rem;transition:opacity .3s ease}
-.adv-mcard:hover .adv-mcard-face,.adv-mcard.tap-open .adv-mcard-face{opacity:0;pointer-events:none}
+.adv-mcard.tap-open .adv-mcard-face{opacity:0;pointer-events:none}
 .adv-icon{width:42px;height:42px;flex-shrink:0;background:rgba(212,175,55,.16);border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:1.25rem}
 .adv-mcard-face h4{color:#fff;font-size:.9rem;font-weight:800}
 .adv-mcard-details{position:absolute;inset:0;padding:1.1rem;opacity:0;transform:translateY(6px);pointer-events:none;
   overflow-y:auto;display:flex;flex-direction:column;justify-content:center;transition:opacity .3s ease,transform .3s ease}
-.adv-mcard:hover .adv-mcard-details,.adv-mcard.tap-open .adv-mcard-details{opacity:1;transform:translateY(0);pointer-events:auto}
+.adv-mcard.tap-open .adv-mcard-details{opacity:1;transform:translateY(0);pointer-events:auto}
 .adv-mcard-details h4{color:var(--gold3);font-size:.85rem;font-weight:800;margin-bottom:.35rem}
 .adv-mcard-details p{color:rgba(255,255,255,.75);font-size:.76rem;line-height:1.6}
 @media(prefers-reduced-motion:reduce){.srv-marquee-track,.adv-marquee-track{animation:none;flex-wrap:wrap;width:100%}}
@@ -505,7 +505,7 @@ section{padding:60px 0}
   <div class="container">
     <div class="stag" data-en="Our Services">خدماتنا</div>
     <h2 class="stitle" data-en="HWKM Integrated Solutions">حلول حوكم المتكاملة</h2>
-    <p class="ssub" data-en="Seven solutions in one platform — built for the Saudi market and aligned with CMA regulations from day one. Hover or tap any solution to see how it works for you.">سبعة حلول في منصة واحدة — مبنية للسوق السعودي ومتوافقة مع لائحة هيئة السوق المالية من اليوم الأول. مرّر أو اضغط على أي خدمة لتشوف كيف تخدمك.</p>
+    <p class="ssub" data-en="Seven solutions in one platform — built for the Saudi market and aligned with CMA regulations from day one. Tap any solution to see how it works for you.">سبعة حلول في منصة واحدة — مبنية للسوق السعودي ومتوافقة مع لائحة هيئة السوق المالية من اليوم الأول. اضغط على أي خدمة لتشوف كيف تخدمك.</p>
   </div>
   <div class="srv-marquee" id="srvMarquee">
     <div class="srv-marquee-track" id="srvTrack"></div>
@@ -994,19 +994,30 @@ const ADVANTAGES = [
     advTrack.innerHTML = once + once;
   }
 
-  // Tap-to-reveal on touch devices (desktop already reveals on :hover)
-  function bindTapToggle(selector){
+  // Tap/click to reveal a card's details. The strip keeps scrolling non-stop at all
+  // other times — it only pauses while a card is explicitly open, and resumes the
+  // instant it's closed (click again, or click outside).
+  function bindTapToggle(selector, marqueeSelector){
+    var marquee = document.querySelector(marqueeSelector);
     document.querySelectorAll(selector).forEach(function(card){
-      card.addEventListener('click', function(){
+      card.addEventListener('click', function(e){
+        e.stopPropagation();
+        var wasOpen = card.classList.contains('tap-open');
         document.querySelectorAll(selector+'.tap-open').forEach(function(other){
-          if(other !== card) other.classList.remove('tap-open');
+          other.classList.remove('tap-open');
         });
-        card.classList.toggle('tap-open');
+        if(!wasOpen) card.classList.add('tap-open');
+        if(marquee) marquee.classList.toggle('is-paused', !wasOpen);
       });
     });
+    // Clicking anywhere else closes the open card and resumes scrolling.
+    document.addEventListener('click', function(){
+      document.querySelectorAll(selector+'.tap-open').forEach(function(c){ c.classList.remove('tap-open'); });
+      if(marquee) marquee.classList.remove('is-paused');
+    });
   }
-  bindTapToggle('.srv-mcard');
-  bindTapToggle('.adv-mcard');
+  bindTapToggle('.srv-mcard', '#srvMarquee');
+  bindTapToggle('.adv-mcard', '#advMarquee');
 })();
 
 // ===== Strategic partners: edit this list to update the scrolling marquee =====
