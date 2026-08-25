@@ -98,7 +98,7 @@ nav{position:fixed;top:0;right:0;left:0;z-index:1000;background:rgba(13,36,71,0.
 .hero-visual{display:flex;justify-content:center;align-items:center}
 .hero-logo-wrap{width:320px;height:320px;background:rgba(255,255,255,.06);border:1px solid rgba(184,151,42,.25);border-radius:24px;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(20px);box-shadow:0 0 60px rgba(184,151,42,.1)}
 .hero-logo-wrap img{width:240px;height:240px;object-fit:contain}
-.hero-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:3rem;padding-top:2rem;border-top:1px solid rgba(255,255,255,.1)}
+.hero-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-top:3rem;padding-top:2rem;border-top:1px solid rgba(255,255,255,.1)}
 .stat-num{font-size:2rem;font-weight:900;color:var(--gold2);text-align:center}
 .stat-label{font-size:.78rem;color:rgba(255,255,255,.6);text-align:center;margin-top:4px}
 
@@ -154,6 +154,27 @@ section{padding:100px 0;scroll-margin-top:72px}
 .prt-slot{background:#fff;border:2px dashed #d0d9e8;border-radius:12px;height:110px;display:flex;align-items:center;justify-content:center;transition:all .3s}
 .prt-slot:hover{border-color:var(--gold);box-shadow:0 8px 24px rgba(13,36,71,.08)}
 .prt-ph{font-size:.85rem;color:var(--gray);font-weight:600;text-align:center;padding:1rem}
+
+/* ── LIVE CLIENTS FEED ── */
+#clients-live .ssub{margin-bottom:0}
+.clv-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.75rem;margin-top:3rem}
+.clv-col{background:#fff;border-radius:18px;padding:1.6rem;box-shadow:0 4px 24px rgba(13,36,71,.06);border:1px solid #e8eef8}
+.clv-col-head{display:flex;align-items:center;gap:.6rem;margin-bottom:1.1rem;padding-bottom:1rem;border-bottom:1px solid #eef1f8}
+.clv-col-icon{font-size:1.3rem}
+.clv-col-head h3{font-size:1.05rem;font-weight:800;color:var(--dark)}
+.clv-list{display:flex;flex-direction:column;gap:.65rem;max-height:420px;overflow-y:auto}
+.clv-list::-webkit-scrollbar{width:4px}
+.clv-list::-webkit-scrollbar-thumb{background:var(--gold2);border-radius:2px}
+.clv-item{display:flex;align-items:flex-start;gap:.7rem;padding:.85rem .9rem;border-radius:10px;background:var(--off);border-right:3px solid var(--gold2);transition:transform .2s}
+.clv-item:hover{transform:translateX(-3px)}
+.clv-item-badge{flex-shrink:0;width:34px;height:34px;border-radius:9px;background:linear-gradient(135deg,var(--blue),var(--blue2));color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.8rem}
+.clv-item-body{flex:1;min-width:0}
+.clv-item-company{font-weight:800;font-size:.85rem;color:var(--dark)}
+.clv-item-type{font-size:.78rem;color:var(--blue2);font-weight:600;margin-top:1px}
+.clv-item-date{font-size:.72rem;color:var(--gray);margin-top:3px}
+.clv-item a.clv-item-link{font-size:.72rem;color:var(--gold);font-weight:700;white-space:nowrap;flex-shrink:0;align-self:center}
+.clv-empty{text-align:center;color:var(--gray);font-size:.85rem;padding:2.5rem 1rem}
+@media(max-width:900px){.clv-grid{grid-template-columns:1fr}}
 
 #faq{background:#fff}
 .faq-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:4rem}
@@ -289,6 +310,8 @@ section{padding:60px 0}
 }(window, document, 'ttq');
 </script>
 <!-- TikTok Pixel Code End -->
+<!-- HWKM Platform connection: read-only public feed of opted-in client announcements & upcoming AGMs -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
 
@@ -302,6 +325,7 @@ section{padding:60px 0}
     <li><a href="#vision" data-en="Vision">رؤيتنا</a></li>
     <li><a href="#services" data-en="Services">خدماتنا</a></li>
     <li><a href="#partners" data-en="Partners">شركاؤنا</a></li>
+    <li><a href="#clients-live" data-en="Our Listed Clients">عملاؤنا المدرجون</a></li>
     <li><a href="#faq" data-en="FAQ">الأسئلة الشائعة</a></li>
     <li><a href="#blog" data-en="Blog">المدونة</a></li>
     <li><a href="#" onclick="openDemoModal();return false;" class="nav-platform" data-en="Try the Platform">جرّب المنصة</a></li>
@@ -331,6 +355,7 @@ section{padding:60px 0}
         <div><div class="stat-num">11+</div><div class="stat-label" data-en="Years of Experience">عاماً من الخبرة</div></div>
         <div><div class="stat-num">6</div><div class="stat-label" data-en="Solutions in One Platform">حلول في منصة واحدة</div></div>
         <div><div class="stat-num">100%</div><div class="stat-label" data-en="CMA Compliant">متوافق مع هيئة السوق المالية</div></div>
+        <div><div class="stat-num">٨٦</div><div class="stat-label" data-en="Auto-Generated CMA Announcement Types">نوع إعلان تلقائي معتمد لتداول</div></div>
       </div>
     </div>
     <div class="hero-visual">
@@ -484,19 +509,23 @@ section{padding:60px 0}
         </ul>
       </div>
 
-      <div class="srv-card reveal">
+      <div class="srv-card reveal" style="border:1px solid rgba(212,175,55,.35)">
         <div class="srv-num">٠٦</div>
         <div class="srv-icon-wrap">✅</div>
         <h3 data-en="Compliance">الامتثال</h3>
         <p data-en="Ensuring continuous compliance with the company's regulatory, legal, and internal requirements.">ضمان الامتثال المستمر للمتطلبات التنظيمية والقانونية والداخلية للشركة.</p>
         <ul class="srv-list">
-          <li data-en="CMA compliance monitoring">متابعة الامتثال لهيئة السوق المالية</li>
+          <li style="font-weight:800;color:var(--dark)" data-en="Auto-generation of 86 CMA-compliant Tadawul announcement types">توليد ٨٦ نوع إعلان تلقائي متوافق مع هيئة السوق المالية (تداول)</li>
+          <li data-en="Direct Nafath identity verification integration">تكامل مباشر مع نفاذ للتحقق من الهوية</li>
+          <li data-en="Full support for listed companies' electronic Tadawul voting">دعم كامل للشركات المدرجة بالتصويت الإلكتروني عبر تداول</li>
           <li data-en="Regulatory obligations register">سجل الالتزامات التنظيمية</li>
           <li data-en="Deadline and requirement alerts">تنبيهات المواعيد والمتطلبات</li>
-          <li data-en="Periodic compliance reports">تقارير الامتثال الدورية</li>
         </ul>
       </div>
 
+    </div>
+    <div class="reveal" style="max-width:760px;margin:2.5rem auto 0;text-align:center;padding:1.1rem 1.5rem;border-radius:14px;background:linear-gradient(135deg,rgba(184,151,42,.08),rgba(13,36,71,.04));border:1px solid rgba(184,151,42,.25)">
+      <p style="font-size:.92rem;color:var(--dark);font-weight:700;margin:0" data-en="A distinction no local competitor currently offers: 86 CMA-compliant announcement types, Nafath integration, and full support for listed companies with Tadawul e-voting — all in one platform.">ميزة لا يقدّمها أي منافس محلي حالياً: ٨٦ نوع إعلان متوافق مع هيئة السوق المالية، تكامل نفاذ، ودعم كامل للشركات المدرجة بالتصويت الإلكتروني عبر تداول — كل ذلك في منصة واحدة.</p>
     </div>
   </div>
 </section>
@@ -516,6 +545,36 @@ section{padding:60px 0}
       <div class="prt-slot"><div class="prt-ph">شريك استراتيجي</div></div>
     </div>
     <p style="text-align:center;margin-top:2rem;color:var(--gray);font-size:.9rem" data-en="Interested in joining HWKM's success partners? "><span data-en-inline>هل أنت مهتم بالانضمام لشركاء نجاح حوكم؟</span> <a href="#contact" style="color:var(--gold);font-weight:700" data-en="Contact Us">تواصل معنا</a></p>
+  </div>
+</section>
+
+<!-- LIVE CLIENTS FEED: TADAWUL ANNOUNCEMENTS + UPCOMING AGMs -->
+<section id="clients-live" style="background:var(--offwhite)">
+  <div class="container">
+    <div class="stag" data-en="Live From Our Platform">مباشر من منصتنا</div>
+    <h2 class="stitle" data-en="Our Listed Clients on Tadawul">عملاؤنا المدرجون على تداول</h2>
+    <p class="ssub" data-en="A live feed of official announcements and upcoming general assemblies generated by our clients through the platform — real proof of trust from listed companies." data-en-inline>موجز مباشر للإعلانات الرسمية والجمعيات العامة القادمة التي يولّدها عملاؤنا عبر المنصة — دليل ثقة حقيقي من شركات مدرجة تستخدم حوكم.</p>
+
+    <div class="clv-grid">
+      <div class="clv-col reveal">
+        <div class="clv-col-head">
+          <span class="clv-col-icon">📢</span>
+          <h3 data-en="Latest Client Announcements">أحدث إعلانات عملائنا</h3>
+        </div>
+        <div id="clvAnnList" class="clv-list">
+          <div class="clv-empty" data-en="Loading latest announcements…">جارِ تحميل أحدث الإعلانات…</div>
+        </div>
+      </div>
+      <div class="clv-col reveal">
+        <div class="clv-col-head">
+          <span class="clv-col-icon">🤝</span>
+          <h3 data-en="Upcoming General Assemblies">الجمعيات العامة القادمة</h3>
+        </div>
+        <div id="clvMeetList" class="clv-list">
+          <div class="clv-empty" data-en="Loading upcoming meetings…">جارِ تحميل الاجتماعات القادمة…</div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -788,6 +847,83 @@ function toggleMobileMenu(){
 document.querySelectorAll('.nav-links a').forEach(function(a){
   a.addEventListener('click', closeMobileMenu);
 });
+
+// ===== Live feed: opted-in client announcements & upcoming AGMs from the HWKM platform =====
+// Reads ONLY two public, read-only Supabase views (public_site_announcements / public_site_meetings)
+// that expose exclusively rows a client company has explicitly chosen to show on this site.
+(function(){
+  if(!window.supabase){ return; }
+  var CLV_URL = "https://omddnkofsdtwfjkxdktt.supabase.co";
+  var CLV_KEY = "sb_publishable_SbHWC7JAuyvXypZyJeiWkg_I9Y4gjbj";
+  var clvSb = window.supabase.createClient(CLV_URL, CLV_KEY);
+
+  function esc(s){
+    return String(s==null?"":s).replace(/[&<>"']/g, function(c){
+      return {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c];
+    });
+  }
+
+  async function loadClientAnnouncements(){
+    var box = document.getElementById('clvAnnList');
+    if(!box) return;
+    try{
+      var res = await clvSb.from('public_site_announcements').select('*').order('created_at',{ascending:false}).limit(8);
+      if(res.error) throw res.error;
+      var data = res.data || [];
+      if(data.length === 0){
+        box.innerHTML = '<div class="clv-empty" data-en="No announcements published yet — check back soon.">لا توجد إعلانات معلنة حالياً — تابعونا قريباً.</div>';
+        return;
+      }
+      box.innerHTML = data.map(function(a){
+        var initial = esc((a.company_name||'ش').trim().charAt(0));
+        var d = a.created_at ? new Date(a.created_at).toLocaleDateString('ar-SA') : '';
+        var link = a.file_url ? '<a class="clv-item-link" href="'+esc(a.file_url)+'" target="_blank" rel="noopener" data-en="View">عرض ↗</a>' : '';
+        return '<div class="clv-item">'
+          + '<div class="clv-item-badge">'+initial+'</div>'
+          + '<div class="clv-item-body">'
+            + '<div class="clv-item-company">'+esc(a.company_name)+'</div>'
+            + '<div class="clv-item-type">'+esc(a.announcement_type)+'</div>'
+            + '<div class="clv-item-date">📅 '+esc(d)+'</div>'
+          + '</div>'
+          + link
+        + '</div>';
+      }).join('');
+    }catch(e){
+      box.innerHTML = '<div class="clv-empty" data-en="Announcements unavailable right now.">تعذّر تحميل الإعلانات حالياً.</div>';
+    }
+  }
+
+  async function loadClientMeetings(){
+    var box = document.getElementById('clvMeetList');
+    if(!box) return;
+    try{
+      var res = await clvSb.from('public_site_meetings').select('*').order('meeting_date',{ascending:true}).limit(8);
+      if(res.error) throw res.error;
+      var data = res.data || [];
+      if(data.length === 0){
+        box.innerHTML = '<div class="clv-empty" data-en="No upcoming general assemblies announced yet.">لا توجد جمعيات عامة قادمة معلنة حالياً.</div>';
+        return;
+      }
+      box.innerHTML = data.map(function(m){
+        var initial = esc((m.company_name||'ش').trim().charAt(0));
+        var when = esc(m.meeting_date||'') + (m.meeting_time ? (' — '+esc(m.meeting_time)) : '');
+        return '<div class="clv-item">'
+          + '<div class="clv-item-badge">'+initial+'</div>'
+          + '<div class="clv-item-body">'
+            + '<div class="clv-item-company">'+esc(m.company_name)+'</div>'
+            + '<div class="clv-item-type">'+esc(m.title||'الجمعية العامة')+'</div>'
+            + '<div class="clv-item-date">📅 '+when+'</div>'
+          + '</div>'
+        + '</div>';
+      }).join('');
+    }catch(e){
+      box.innerHTML = '<div class="clv-empty" data-en="Meetings unavailable right now.">تعذّر تحميل الاجتماعات حالياً.</div>';
+    }
+  }
+
+  loadClientAnnouncements();
+  loadClientMeetings();
+})();
 </script>
 </body>
 </html>
