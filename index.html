@@ -133,40 +133,65 @@ section{padding:100px 0;scroll-margin-top:72px}
 .val-text h4{color:#fff;font-size:1rem;font-weight:700;margin-bottom:4px}
 .val-text p{color:rgba(255,255,255,.6);font-size:.88rem;line-height:1.6}
 
-#services{background:#fff}
-.srv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;margin-top:4rem;align-items:start}
-.srv-card{border:none;border-radius:20px;padding:2rem;transition:all .3s;position:relative;overflow:hidden;background:linear-gradient(145deg,#f8f9fc,#eef1f8);box-shadow:0 4px 20px rgba(13,36,71,0.06);cursor:pointer}
-.srv-card::before{content:'';position:absolute;top:0;right:0;width:100%;height:4px;background:linear-gradient(90deg,var(--gold),var(--gold2))}
-.srv-card::after{content:'';position:absolute;bottom:0;right:0;width:0;height:3px;background:var(--gold);transition:width .4s}
-.srv-card:hover{box-shadow:0 20px 56px rgba(13,36,71,.13);transform:translateY(-6px)}
-.srv-card:hover::after{width:100%}
-.srv-num{font-size:3rem;font-weight:900;color:var(--light);line-height:1;margin-bottom:.5rem;font-family:'Amiri',serif}
-.srv-icon{font-size:2rem;margin-bottom:.8rem}
-.srv-icon-wrap{width:56px;height:56px;background:linear-gradient(135deg,var(--dark),var(--blue2));border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;margin-bottom:1rem;box-shadow:0 4px 12px rgba(13,36,71,0.2)}
-.srv-card h3{font-size:1.15rem;font-weight:800;color:var(--dark);margin-bottom:.3rem}
-.srv-card p{color:var(--gray);line-height:1.8;font-size:.9rem;margin-bottom:1rem}
-.srv-list{list-style:none;display:flex;flex-direction:column;gap:5px}
-.srv-list li{font-size:.85rem;color:#555;display:flex;align-items:center;gap:8px}
-.srv-list li::before{content:'✓';color:var(--gold);font-weight:700;flex-shrink:0}
+#services{background:#fff;overflow:hidden}
+#services .container{padding-bottom:0}
 
-/* hover / tap reveal for service card details */
-.srv-hint{display:inline-flex;align-items:center;gap:4px;font-size:.76rem;font-weight:700;color:var(--gold);}
-.srv-hint-arrow{display:inline-block;transition:transform .3s ease}
-.srv-details{max-height:0;opacity:0;overflow:hidden;margin-top:0;transition:max-height .5s ease,opacity .4s ease,margin-top .5s ease}
-.srv-card:hover .srv-details,.srv-card.tap-open .srv-details{max-height:640px;opacity:1;margin-top:1rem}
-.srv-card:hover .srv-hint,.srv-card.tap-open .srv-hint{opacity:0}
-.srv-card:hover .srv-hint-arrow,.srv-card.tap-open .srv-hint-arrow{transform:rotate(180deg)}
+/* ── SERVICES MARQUEE (continuous scroll, hover to reveal details) ── */
+.srv-marquee{overflow:hidden;position:relative;margin-top:3.5rem;padding:1rem 0 3rem;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent);
+  mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent)}
+.srv-marquee-track{display:flex;gap:1.6rem;width:max-content;direction:ltr;animation:srvScroll 52s linear infinite}
+.srv-marquee:hover .srv-marquee-track{animation-play-state:paused}
+@keyframes srvScroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+.srv-mcard{position:relative;direction:rtl;flex-shrink:0;width:290px;height:330px;border-radius:20px;cursor:pointer;
+  background:linear-gradient(145deg,#f8f9fc,#eef1f8);box-shadow:0 4px 20px rgba(13,36,71,0.08);
+  transition:box-shadow .3s,transform .3s}
+.srv-mcard::before{content:'';position:absolute;top:0;right:0;width:100%;height:4px;border-radius:20px 20px 0 0;background:linear-gradient(90deg,var(--gold),var(--gold2));z-index:2}
+.srv-mcard:hover,.srv-mcard.tap-open{box-shadow:0 22px 50px rgba(13,36,71,.2);transform:translateY(-6px);z-index:3}
+
+.srv-mcard-face{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;padding:1.8rem;transition:opacity .3s ease}
+.srv-mcard:hover .srv-mcard-face,.srv-mcard.tap-open .srv-mcard-face{opacity:0;pointer-events:none}
+.srv-mcard-face .srv-num{font-size:2.6rem;font-weight:900;color:var(--light);line-height:1;margin-bottom:.4rem;font-family:'Amiri',serif}
+.srv-mcard-face .srv-icon-wrap{width:56px;height:56px;background:linear-gradient(135deg,var(--dark),var(--blue2));border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;margin-bottom:.9rem;box-shadow:0 4px 12px rgba(13,36,71,0.2)}
+.srv-mcard-face h3{font-size:1.05rem;font-weight:800;color:var(--dark);margin-bottom:.5rem}
+.srv-mcard-face .srv-hint{display:inline-flex;align-items:center;gap:4px;font-size:.74rem;font-weight:700;color:var(--gold)}
+.srv-mcard-face .srv-hint-arrow{transition:transform .3s ease}
+.srv-mcard:hover .srv-hint-arrow,.srv-mcard.tap-open .srv-hint-arrow{transform:translateY(3px)}
+
+.srv-mcard-details{position:absolute;inset:0;padding:1.7rem;opacity:0;transform:translateY(6px);pointer-events:none;
+  overflow-y:auto;transition:opacity .3s ease,transform .3s ease}
+.srv-mcard:hover .srv-mcard-details,.srv-mcard.tap-open .srv-mcard-details{opacity:1;transform:translateY(0);pointer-events:auto}
+.srv-mcard-details h3{font-size:.98rem;font-weight:800;color:var(--dark);margin-bottom:.5rem}
+.srv-mcard-details p{color:var(--gray);line-height:1.65;font-size:.8rem;margin-bottom:.7rem}
+.srv-list{list-style:none;display:flex;flex-direction:column;gap:4px}
+.srv-list li{font-size:.76rem;color:#555;display:flex;align-items:flex-start;gap:6px;line-height:1.5}
+.srv-list li::before{content:'✓';color:var(--gold);font-weight:700;flex-shrink:0}
 
 /* WHY HWKM / advantages */
 #advantages{overflow:hidden;position:relative}
 #advantages .ssub{max-width:640px}
-.adv-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.3rem;margin-top:3rem}
-.adv-item{display:flex;gap:1rem;align-items:flex-start;background:rgba(255,255,255,.05);border-radius:14px;padding:1.4rem;border:1px solid rgba(255,255,255,.08);transition:all .3s}
-.adv-item:hover{background:rgba(255,255,255,.09);border-color:rgba(212,175,55,.3);transform:translateY(-3px)}
-.adv-icon{width:46px;height:46px;flex-shrink:0;background:rgba(212,175,55,.16);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.35rem}
-.adv-item h4{color:#fff;font-size:.98rem;font-weight:800;margin-bottom:4px}
-.adv-item p{color:rgba(255,255,255,.65);font-size:.85rem;line-height:1.7}
-@media(max-width:768px){.adv-grid{grid-template-columns:1fr}}
+.adv-marquee{overflow:hidden;position:relative;margin-top:3.5rem;padding-bottom:.5rem;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent);
+  mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent)}
+.adv-marquee-track{display:flex;gap:1.3rem;width:max-content;direction:ltr;animation:srvScroll 46s linear infinite reverse}
+.adv-marquee:hover .adv-marquee-track{animation-play-state:paused}
+
+.adv-mcard{position:relative;direction:rtl;flex-shrink:0;width:250px;height:150px;border-radius:16px;cursor:pointer;
+  background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);transition:all .3s}
+.adv-mcard:hover,.adv-mcard.tap-open{background:rgba(255,255,255,.09);border-color:rgba(212,175,55,.35);transform:translateY(-4px)}
+.adv-mcard-face{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;padding:1rem;gap:.5rem;transition:opacity .3s ease}
+.adv-mcard:hover .adv-mcard-face,.adv-mcard.tap-open .adv-mcard-face{opacity:0;pointer-events:none}
+.adv-icon{width:42px;height:42px;flex-shrink:0;background:rgba(212,175,55,.16);border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:1.25rem}
+.adv-mcard-face h4{color:#fff;font-size:.9rem;font-weight:800}
+.adv-mcard-details{position:absolute;inset:0;padding:1.1rem;opacity:0;transform:translateY(6px);pointer-events:none;
+  overflow-y:auto;display:flex;flex-direction:column;justify-content:center;transition:opacity .3s ease,transform .3s ease}
+.adv-mcard:hover .adv-mcard-details,.adv-mcard.tap-open .adv-mcard-details{opacity:1;transform:translateY(0);pointer-events:auto}
+.adv-mcard-details h4{color:var(--gold3);font-size:.85rem;font-weight:800;margin-bottom:.35rem}
+.adv-mcard-details p{color:rgba(255,255,255,.75);font-size:.76rem;line-height:1.6}
+@media(prefers-reduced-motion:reduce){.srv-marquee-track,.adv-marquee-track{animation:none;flex-wrap:wrap;width:100%}}
 
 #partners{background:var(--off)}
 .prt-slots{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;margin-top:3rem}
@@ -321,7 +346,8 @@ nav{padding:0 1.2rem}
 .about-grid,.contact-grid{grid-template-columns:1fr;gap:2rem}
 .vision-grid{grid-template-columns:1fr}
 .values-grid{grid-template-columns:1fr}
-.srv-grid{grid-template-columns:1fr}
+.srv-mcard{width:250px;height:360px}
+.adv-mcard{width:220px;height:170px}
 .blog-grid,.faq-grid{grid-template-columns:1fr}
 .footer-grid{grid-template-columns:1fr;gap:2rem}
 .prt-slots{grid-template-columns:repeat(2,1fr)}
@@ -479,123 +505,10 @@ section{padding:60px 0}
   <div class="container">
     <div class="stag" data-en="Our Services">خدماتنا</div>
     <h2 class="stitle" data-en="HWKM Integrated Solutions">حلول حوكم المتكاملة</h2>
-    <p class="ssub" data-en="Seven solutions in one platform — designed for the Saudi market, compliant with CMA regulations. Hover over any solution for details.">سبعة حلول في منصة واحدة — مصممة للسوق السعودي، متوافقة مع لائحة هيئة السوق المالية. مرّر أو اضغط على أي خدمة لعرض تفاصيلها.</p>
-    <div class="srv-grid">
-
-      <div class="srv-card reveal">
-        <div class="srv-num">٠١</div>
-        <div class="srv-icon-wrap">🏛</div>
-        <h3 data-en="Corporate Governance">الحوكمة المؤسسية</h3>
-        <div class="srv-hint" data-en="Details">التفاصيل <span class="srv-hint-arrow">▾</span></div>
-        <div class="srv-details">
-          <p data-en="Building an integrated governance structure including the board, committees, policies, and authority matrix.">بناء هيكل حوكمة متكامل يشمل مجلس الإدارة واللجان والسياسات ومصفوفة الصلاحيات.</p>
-          <ul class="srv-list">
-            <li data-en="Board and specialized committee structure">هيكل مجلس الإدارة واللجان المتخصصة</li>
-            <li data-en="Building and documenting policies, procedures, and regulations">بناء وتوثيق السياسات والإجراءات واللوائح</li>
-            <li data-en="Digital authority matrix">مصفوفة الصلاحيات رقمياً</li>
-            <li data-en="Board member performance evaluation">تقييم أداء أعضاء المجلس</li>
-            <li data-en="Governance effectiveness evaluation">تقييم فعالية الحوكمة</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="srv-card reveal">
-        <div class="srv-num">٠٢</div>
-        <div class="srv-icon-wrap">📅</div>
-        <h3 data-en="Board Meeting Management">إدارة اجتماعات مجلس الإدارة</h3>
-        <div class="srv-hint" data-en="Details">التفاصيل <span class="srv-hint-arrow">▾</span></div>
-        <div class="srv-details">
-          <p data-en="An integrated system for managing board meetings from scheduling to electronic signature.">منظومة متكاملة لإدارة اجتماعات المجلس من الجدولة حتى التوقيع الإلكتروني.</p>
-          <ul class="srv-list">
-            <li data-en="Meeting scheduling and invitations">جدولة الاجتماعات وإرسال الدعوات</li>
-            <li data-en="Distributing agendas and documents">توزيع جداول الأعمال والوثائق</li>
-            <li data-en="Recording minutes and decisions">تسجيل المحاضر والقرارات</li>
-            <li data-en="Voting and electronic signature">التصويت والتوقيع الإلكتروني</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="srv-card reveal">
-        <div class="srv-num">٠٣</div>
-        <div class="srv-icon-wrap">🤝</div>
-        <h3 data-en="General Assembly Management">إدارة اجتماعات الجمعيات العامة</h3>
-        <div class="srv-hint" data-en="Details">التفاصيل <span class="srv-hint-arrow">▾</span></div>
-        <div class="srv-details">
-          <p data-en="Managing ordinary and extraordinary general assemblies in accordance with regulatory requirements.">إدارة الجمعيات العامة العادية وغير العادية وفق الاشتراطات النظامية.</p>
-          <ul class="srv-list">
-            <li data-en="Preparation and invitation to the general assembly">الإعداد والدعوة للجمعية العامة</li>
-            <li data-en="Voting management and quorum calculation">إدارة التصويت وحساب النصاب</li>
-            <li data-en="Documenting decisions and minutes">توثيق القرارات والمحاضر</li>
-            <li data-en="Compliance with regulatory requirements">الامتثال للمتطلبات النظامية</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="srv-card reveal">
-        <div class="srv-num">٠٤</div>
-        <div class="srv-icon-wrap">🔍</div>
-        <h3 data-en="Internal Audit">التدقيق الداخلي</h3>
-        <div class="srv-hint" data-en="Details">التفاصيل <span class="srv-hint-arrow">▾</span></div>
-        <div class="srv-details">
-          <p data-en="A specialized tool for the internal audit team enabling organized planning, execution, and follow-up.">أداة متخصصة لفريق التدقيق الداخلي تتيح التخطيط والتنفيذ والمتابعة بشكل منظم.</p>
-          <ul class="srv-list">
-            <li data-en="Preparing annual audit plans">إعداد خطط التدقيق السنوية</li>
-            <li data-en="Executing review tasks and reporting">تنفيذ مهام المراجعة ورفع التقارير</li>
-            <li data-en="Following up on audit recommendations">متابعة توصيات التدقيق</li>
-            <li data-en="Audit committee reports">تقارير لجنة المراجعة</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="srv-card reveal">
-        <div class="srv-num">٠٥</div>
-        <div class="srv-icon-wrap">⚠️</div>
-        <h3 data-en="Risk Management">إدارة المخاطر</h3>
-        <div class="srv-hint" data-en="Details">التفاصيل <span class="srv-hint-arrow">▾</span></div>
-        <div class="srv-details">
-          <p data-en="An integrated system for identifying, assessing, and developing treatment plans for corporate risks.">نظام متكامل لتحديد المخاطر المؤسسية وتقييمها ووضع خطط المعالجة ومتابعتها.</p>
-          <ul class="srv-list">
-            <li data-en="Corporate risk register">سجل المخاطر المؤسسية</li>
-            <li data-en="Risk assessment by priority">تقييم المخاطر حسب الأولوية</li>
-            <li data-en="Treatment and mitigation plans">خطط المعالجة والتخفيف</li>
-            <li data-en="Key Risk Indicators (KRIs)">مؤشرات المخاطر الرئيسية KRIs</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="srv-card reveal">
-        <div class="srv-num">٠٦</div>
-        <div class="srv-icon-wrap">✅</div>
-        <h3 data-en="Compliance">الامتثال</h3>
-        <div class="srv-hint" data-en="Details">التفاصيل <span class="srv-hint-arrow">▾</span></div>
-        <div class="srv-details">
-          <p data-en="Enabling the entity to comply with regulatory, legal, and statutory requirements.">تمكين الكيان من الامتثال للمتطلبات النظامية واللوائح والقوانين.</p>
-          <ul class="srv-list">
-            <li data-en="CMA compliance monitoring">متابعة الامتثال لهيئة السوق المالية</li>
-            <li data-en="Regulatory obligations register">سجل الالتزامات التنظيمية</li>
-            <li data-en="Deadline and requirement alerts">تنبيهات المواعيد والمتطلبات</li>
-            <li data-en="Periodic compliance reports">تقارير الامتثال الدورية</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="srv-card reveal" style="border:1px solid rgba(212,175,55,.35)">
-        <div class="srv-num">٠٧</div>
-        <div class="srv-icon-wrap">📢</div>
-        <h3 data-en="Announcements">الإعلانات</h3>
-        <div class="srv-hint" data-en="Details">التفاصيل <span class="srv-hint-arrow">▾</span></div>
-        <div class="srv-details">
-          <p data-en="A dedicated service for listed companies to generate their official Tadawul announcements before submission, with electronic signature.">خدمة متخصصة للشركات المدرجة تساعدها على توليد إعلاناتها الرسمية بصياغة معتمدة قبل رفعها على منصة تداول، مع دعم التوقيع الإلكتروني.</p>
-          <ul class="srv-list">
-            <li style="font-weight:800;color:var(--dark)" data-en="86 ready, CMA-compliant announcement templates">توليد ٨٦ نوع إعلان جاهز بصياغة معتمدة</li>
-            <li data-en="Review and preparation before submission to Tadawul">مراجعة وتجهيز الإعلان قبل رفعه على تداول</li>
-            <li data-en="Electronic signature before approval">توقيع إلكتروني على المستند قبل الاعتماد</li>
-            <li data-en="Archiving and status tracking for every announcement">أرشفة ومتابعة حالة كل إعلان</li>
-          </ul>
-        </div>
-      </div>
-
-    </div>
+    <p class="ssub" data-en="Seven solutions in one platform — built for the Saudi market and aligned with CMA regulations from day one. Hover or tap any solution to see how it works for you.">سبعة حلول في منصة واحدة — مبنية للسوق السعودي ومتوافقة مع لائحة هيئة السوق المالية من اليوم الأول. مرّر أو اضغط على أي خدمة لتشوف كيف تخدمك.</p>
+  </div>
+  <div class="srv-marquee" id="srvMarquee">
+    <div class="srv-marquee-track" id="srvTrack"></div>
   </div>
 </section>
 
@@ -604,37 +517,10 @@ section{padding:60px 0}
   <div class="container">
     <div class="stag" style="color:var(--gold3)" data-en="Why HWKM">لماذا حوكم</div>
     <h2 class="stitle" style="color:#fff" data-en="What Sets Us Apart">مميزاتنا</h2>
-    <p class="ssub" style="color:var(--gray2)" data-en="What replaces scattered tools and paperwork with a single, connected experience.">ما الذي يستبدل الأدوات المتفرقة والأوراق بتجربة واحدة متصلة.</p>
-    <div class="adv-grid">
-      <div class="adv-item reveal">
-        <div class="adv-icon">🧩</div>
-        <div><h4 data-en="Several Platforms in One Place">عدة منصات في مكان واحد</h4><p data-en="Governance, meetings, audit, risk, compliance, and announcements — all in a single connected system instead of scattered tools.">الحوكمة، الاجتماعات، التدقيق، المخاطر، الامتثال، والإعلانات — كلها بنظام واحد متصل بدل أدوات متفرقة.</p></div>
-      </div>
-      <div class="adv-item reveal">
-        <div class="adv-icon">🎓</div>
-        <div><h4 data-en="Deep Local Expertise">خبرات محلية عميقة</h4><p data-en="A team that tracks every regulatory update from the CMA and Ministry of Commerce to keep the platform current.">فريق يتابع كل تحديث تنظيمي صادر عن هيئة السوق المالية ووزارة التجارة لإبقاء المنصة محدثة دائماً.</p></div>
-      </div>
-      <div class="adv-item reveal">
-        <div class="adv-icon">⚖️</div>
-        <div><h4 data-en="Built on Regulations & Standards">مبنية على الأنظمة والمعايير</h4><p data-en="The platform is built on the CMA's Corporate Governance Regulations and recognized internal audit standards — so every process on it is aligned with the system by design.">المنصة مبنية أساساً على لائحة حوكمة الشركات الصادرة عن هيئة السوق المالية ومعايير التدقيق الداخلي المعتمدة، بحيث تكون كل عملية داخل المنصة متوافقة مع النظام من التصميم.</p></div>
-      </div>
-      <div class="adv-item reveal">
-        <div class="adv-icon">💻</div>
-        <div><h4 data-en="Fully Digital">كل شيء رقمي</h4><p data-en="From documentation to electronic signature — no paper, no scattered files.">من التوثيق حتى التوقيع الإلكتروني — بدون أوراق وبدون ملفات متفرقة.</p></div>
-      </div>
-      <div class="adv-item reveal">
-        <div class="adv-icon">📢</div>
-        <div><h4 data-en="Regulatory Announcements">الإعلانات</h4><p data-en="86 ready-made announcement types for listed companies before submission to Tadawul.">٨٦ نوع إعلان جاهز للشركات المدرجة قبل رفعها على تداول.</p></div>
-      </div>
-      <div class="adv-item reveal">
-        <div class="adv-icon">🗳️</div>
-        <div><h4 data-en="Board & Committee Nomination">ترشيح أعضاء مجلس ولجان</h4><p data-en="Submit and track board and committee member nomination requests digitally.">تقديم ومتابعة طلبات ترشيح أعضاء مجلس الإدارة واللجان رقمياً.</p></div>
-      </div>
-      <div class="adv-item reveal">
-        <div class="adv-icon">🧑‍💼</div>
-        <div><h4 data-en="Specialized Service Provider Nomination">ترشيح مزودي خدمات متخصصين</h4><p data-en="Request specialized service providers — such as external auditors, legal consultancies, and feasibility study offices.">طلب مزودي خدمات متخصصين مثل المراجع الخارجي، الاستشارات القانونية، ومكاتب دراسات الجدوى.</p></div>
-      </div>
-    </div>
+    <p class="ssub" style="color:var(--gray2)" data-en="Not just features — the reasons our clients never go back to their old way of working." data-en-inline>ليست مجرد ميزات — هذي الأسباب اللي تخلي عملاءنا ما يرجعون لطريقتهم القديمة.</p>
+  </div>
+  <div class="adv-marquee" id="advMarquee">
+    <div class="adv-marquee-track" id="advTrack"></div>
   </div>
 </section>
 
@@ -964,16 +850,164 @@ document.querySelectorAll('.nav-links a').forEach(function(a){
   a.addEventListener('click', closeMobileMenu);
 });
 
-// ===== Service cards: tap-to-reveal details on touch devices (desktop uses :hover) =====
-document.querySelectorAll('#services .srv-card').forEach(function(card){
-  card.addEventListener('click', function(e){
-    if(e.target.closest('a')) return;
-    document.querySelectorAll('#services .srv-card.tap-open').forEach(function(other){
-      if(other !== card) other.classList.remove('tap-open');
+// ===== Services & Advantages: continuously-scrolling marquees, hover/tap reveals details =====
+const SERVICES = [
+  { num:"٠١", icon:"🏛", title:{ar:"الحوكمة المؤسسية",en:"Corporate Governance"},
+    desc:{ar:"حوكمة تُبنى بشكل صحيح من أول مرة، لا تُعاد صياغتها كل عام. مجلس، لجان، سياسات، وصلاحيات — في هيكل واحد يعكس شركتك كما هي، لا كما في القوالب الجاهزة.",
+      en:"Governance built right the first time, not rewritten every year. Board, committees, policies, and authority — one structure that reflects your company, not a generic template."},
+    list:[
+      {ar:"هيكل مجلس الإدارة واللجان المتخصصة",en:"Board and specialized committee structure"},
+      {ar:"بناء وتوثيق السياسات والإجراءات واللوائح",en:"Building and documenting policies, procedures, and regulations"},
+      {ar:"مصفوفة الصلاحيات رقمياً",en:"Digital authority matrix"},
+      {ar:"تقييم أداء أعضاء المجلس",en:"Board member performance evaluation"},
+      {ar:"تقييم فعالية الحوكمة",en:"Governance effectiveness evaluation"},
+    ]},
+  { num:"٠٢", icon:"📅", title:{ar:"إدارة اجتماعات مجلس الإدارة",en:"Board Meeting Management"},
+    desc:{ar:"من الدعوة إلى التوقيع، دورة اجتماع كاملة بلا ورق ولا رسائل متفرقة. كل عضو مجلس يصله كل شيء في مكان واحد، وأنت تعرف بالضبط أين توقف كل قرار.",
+      en:"From invitation to signature — a complete meeting cycle without paper or scattered messages. Every board member gets everything in one place, and you know exactly where each decision stands."},
+    list:[
+      {ar:"جدولة الاجتماعات وإرسال الدعوات",en:"Meeting scheduling and invitations"},
+      {ar:"توزيع جداول الأعمال والوثائق",en:"Distributing agendas and documents"},
+      {ar:"تسجيل المحاضر والقرارات",en:"Recording minutes and decisions"},
+      {ar:"التصويت والتوقيع الإلكتروني",en:"Voting and electronic signature"},
+    ]},
+  { num:"٠٣", icon:"🤝", title:{ar:"إدارة اجتماعات الجمعيات العامة",en:"General Assembly Management"},
+    desc:{ar:"جمعية عامة تسير بثقة من أول دعوة إلى آخر محضر — النصاب، التصويت، والتوثيق، كلها مطابقة للاشتراطات النظامية دون أن تحفظها عن ظهر قلب.",
+      en:"A general assembly that runs with confidence from the first invitation to the final minutes — quorum, voting, and documentation, all aligned with regulatory requirements without you memorizing them."},
+    list:[
+      {ar:"الإعداد والدعوة للجمعية العامة",en:"Preparation and invitation to the general assembly"},
+      {ar:"إدارة التصويت وحساب النصاب",en:"Voting management and quorum calculation"},
+      {ar:"توثيق القرارات والمحاضر",en:"Documenting decisions and minutes"},
+      {ar:"الامتثال للمتطلبات النظامية",en:"Compliance with regulatory requirements"},
+    ]},
+  { num:"٠٤", icon:"🔍", title:{ar:"التدقيق الداخلي",en:"Internal Audit"},
+    desc:{ar:"فريق التدقيق الداخلي يخطط وينفذ ويتابع من مكان واحد — بدل ملفات إكسل متناثرة توصل للجنة المراجعة متأخرة.",
+      en:"Your internal audit team plans, executes, and follows up from one place — instead of scattered spreadsheets that reach the audit committee too late."},
+    list:[
+      {ar:"إعداد خطط التدقيق السنوية",en:"Preparing annual audit plans"},
+      {ar:"تنفيذ مهام المراجعة ورفع التقارير",en:"Executing review tasks and reporting"},
+      {ar:"متابعة توصيات التدقيق",en:"Following up on audit recommendations"},
+      {ar:"تقارير لجنة المراجعة",en:"Audit committee reports"},
+    ]},
+  { num:"٠٥", icon:"⚠️", title:{ar:"إدارة المخاطر",en:"Risk Management"},
+    desc:{ar:"الخطر الذي لا تراه هو الأخطر. سجل حي يكشف كل خطر، يرتّبه حسب الأولوية، ويتابع خطة معالجته حتى يُغلق فعلاً — لا حتى يُنسى.",
+      en:"The risk you don't see is the one that hurts most. A live register that surfaces every risk, ranks it by priority, and tracks its treatment plan until it's actually closed — not forgotten."},
+    list:[
+      {ar:"سجل المخاطر المؤسسية",en:"Corporate risk register"},
+      {ar:"تقييم المخاطر حسب الأولوية",en:"Risk assessment by priority"},
+      {ar:"خطط المعالجة والتخفيف",en:"Treatment and mitigation plans"},
+      {ar:"مؤشرات المخاطر الرئيسية KRIs",en:"Key Risk Indicators (KRIs)"},
+    ]},
+  { num:"٠٦", icon:"✅", title:{ar:"الامتثال",en:"Compliance"},
+    desc:{ar:"امتثال بلا مفاجآت. تنبيهات قبل المواعيد، سجل التزامات محدّث، وتقارير جاهزة — بدل أن تكتشف التزاماً فائتاً بعد فوات الأوان.",
+      en:"Compliance with no surprises. Alerts before deadlines, an up-to-date obligations register, and ready reports — instead of discovering a missed requirement after it's too late."},
+    list:[
+      {ar:"متابعة الامتثال لهيئة السوق المالية",en:"CMA compliance monitoring"},
+      {ar:"سجل الالتزامات التنظيمية",en:"Regulatory obligations register"},
+      {ar:"تنبيهات المواعيد والمتطلبات",en:"Deadline and requirement alerts"},
+      {ar:"تقارير الامتثال الدورية",en:"Periodic compliance reports"},
+    ]},
+  { num:"٠٧", icon:"📢", title:{ar:"الإعلانات",en:"Announcements"}, highlight:true,
+    desc:{ar:"٨٦ نوع إعلان جاهز الصياغة، موقّع إلكترونياً، ومجهّز للرفع على تداول خلال دقائق — لا ساعات مع المستشار القانوني لصياغة كل إعلان من الصفر.",
+      en:"86 ready-drafted, electronically signed announcement types — prepared for Tadawul submission in minutes, not hours with legal counsel drafting each one from scratch."},
+    list:[
+      {ar:"توليد ٨٦ نوع إعلان جاهز بصياغة معتمدة",en:"86 ready, CMA-compliant announcement templates", strong:true},
+      {ar:"مراجعة وتجهيز الإعلان قبل رفعه على تداول",en:"Review and preparation before submission to Tadawul"},
+      {ar:"توقيع إلكتروني على المستند قبل الاعتماد",en:"Electronic signature before approval"},
+      {ar:"أرشفة ومتابعة حالة كل إعلان",en:"Archiving and status tracking for every announcement"},
+    ]},
+];
+
+const ADVANTAGES = [
+  { icon:"🧩", title:{ar:"منصة واحدة تكفي",en:"One Platform Is Enough"},
+    desc:{ar:"توقف عن التنقل بين إكسل والواتساب والبريد وخمس أدوات مختلفة. الحوكمة، الاجتماعات، التدقيق، المخاطر، الامتثال، والإعلانات — في مكان واحد فقط.",
+      en:"Stop switching between spreadsheets, WhatsApp, email, and five different tools. Governance, meetings, audit, risk, compliance, and announcements — all in one place."} },
+  { icon:"🎓", title:{ar:"نتابع اللوائح، فلا تُفاجأ بها",en:"We Track the Regulations, So You're Never Surprised"},
+    desc:{ar:"كل تحديث تنظيمي من هيئة السوق المالية ووزارة التجارة يصل لمنصتك أولاً بأول — أنت تدير شركتك، ونحن نتابع الأنظمة نيابة عنك.",
+      en:"Every regulatory update from the CMA and Ministry of Commerce reaches your platform first. You run your company — we watch the regulations for you."} },
+  { icon:"⚖️", title:{ar:"الامتثال مبني بالأساس، لا مُضاف لاحقاً",en:"Compliance Built In, Not Bolted On"},
+    desc:{ar:"كل شاشة بالمنصة مصممة أصلاً على لائحة حوكمة الشركات ومعايير التدقيق الداخلي المعتمدة — فلا تحتاج تتساءل إذا كانت طريقتكم متوافقة، هي متوافقة بحكم البناء.",
+      en:"Every screen is designed around the CMA's Corporate Governance Regulations and recognized internal audit standards — so you're not left wondering whether your way of working is compliant."} },
+  { icon:"💻", title:{ar:"وداعاً للورق",en:"Goodbye, Paper"},
+    desc:{ar:"من أول وثيقة إلى آخر توقيع، رحلة رقمية كاملة — لا طابعة، ولا أرشيف ورقي، ولا ملف تايه في درج أحد.",
+      en:"From the first document to the final signature — a complete digital journey. No printer, no paper archive, no file lost in someone's drawer."} },
+  { icon:"📢", title:{ar:"إعلانات تداول بدقائق لا أيام",en:"Tadawul Announcements in Minutes, Not Days"},
+    desc:{ar:"٨٦ نوع إعلان جاهز الصياغة، موقّع إلكترونياً، ومهيأ للرفع على تداول عند الحاجة.",
+      en:"86 ready-drafted, electronically signed announcement types — prepared for Tadawul submission on demand."} },
+  { icon:"🗳️", title:{ar:"ترشيح الأعضاء بلا معاملات ورقية",en:"Member Nomination Without the Paperwork"},
+    desc:{ar:"من تقديم طلب الترشيح إلى اعتماده، العملية كاملة أونلاين — بلا نماذج مطبوعة ولا انتظار توقيعات.",
+      en:"From submitting a nomination request to its approval — the entire process happens online, no printed forms and no waiting on signatures."} },
+  { icon:"🧑‍💼", title:{ar:"شبكة مزودي خدمات جاهزة",en:"A Ready Network of Service Providers"},
+    desc:{ar:"تحتاج مراجعاً خارجياً أو استشارة قانونية أو دراسة جدوى؟ اطلبها من داخل المنصة مباشرة، بدل البحث من الصفر كل مرة.",
+      en:"Need an external auditor, legal counsel, or a feasibility study office? Request one directly from inside the platform instead of starting from zero every time."} },
+];
+
+(function(){
+  function esc(s){
+    return String(s==null?"":s).replace(/[&<>"']/g, function(c){
+      return {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c];
     });
-    card.classList.toggle('tap-open');
-  });
-});
+  }
+
+  function serviceCardHTML(s){
+    const listHTML = s.list.map(function(li){
+      const style = li.strong ? ' style="font-weight:800;color:var(--dark)"' : '';
+      return '<li'+style+' data-en="'+esc(li.en)+'">'+esc(li.ar)+'</li>';
+    }).join('');
+    const borderStyle = s.highlight ? ' style="border:1px solid rgba(212,175,55,.35)"' : '';
+    return '<div class="srv-mcard"'+borderStyle+'>'
+      + '<div class="srv-mcard-face">'
+        + '<div class="srv-num">'+s.num+'</div>'
+        + '<div class="srv-icon-wrap">'+s.icon+'</div>'
+        + '<h3 data-en="'+esc(s.title.en)+'">'+esc(s.title.ar)+'</h3>'
+        + '<div class="srv-hint" data-en="Details">التفاصيل <span class="srv-hint-arrow">▾</span></div>'
+      + '</div>'
+      + '<div class="srv-mcard-details">'
+        + '<h3 data-en="'+esc(s.title.en)+'">'+esc(s.title.ar)+'</h3>'
+        + '<p data-en="'+esc(s.desc.en)+'">'+esc(s.desc.ar)+'</p>'
+        + '<ul class="srv-list">'+listHTML+'</ul>'
+      + '</div>'
+    + '</div>';
+  }
+
+  function advCardHTML(a){
+    return '<div class="adv-mcard">'
+      + '<div class="adv-mcard-face">'
+        + '<div class="adv-icon">'+a.icon+'</div>'
+        + '<h4 data-en="'+esc(a.title.en)+'">'+esc(a.title.ar)+'</h4>'
+      + '</div>'
+      + '<div class="adv-mcard-details">'
+        + '<h4 data-en="'+esc(a.title.en)+'">'+esc(a.title.ar)+'</h4>'
+        + '<p data-en="'+esc(a.desc.en)+'">'+esc(a.desc.ar)+'</p>'
+      + '</div>'
+    + '</div>';
+  }
+
+  const srvTrack = document.getElementById('srvTrack');
+  if(srvTrack){
+    const once = SERVICES.map(serviceCardHTML).join('');
+    srvTrack.innerHTML = once + once; // duplicated for a seamless -50% loop
+  }
+  const advTrack = document.getElementById('advTrack');
+  if(advTrack){
+    const once = ADVANTAGES.map(advCardHTML).join('');
+    advTrack.innerHTML = once + once;
+  }
+
+  // Tap-to-reveal on touch devices (desktop already reveals on :hover)
+  function bindTapToggle(selector){
+    document.querySelectorAll(selector).forEach(function(card){
+      card.addEventListener('click', function(){
+        document.querySelectorAll(selector+'.tap-open').forEach(function(other){
+          if(other !== card) other.classList.remove('tap-open');
+        });
+        card.classList.toggle('tap-open');
+      });
+    });
+  }
+  bindTapToggle('.srv-mcard');
+  bindTapToggle('.adv-mcard');
+})();
 
 // ===== Strategic partners: edit this list to update the scrolling marquee =====
 // Each entry needs a name. logo (image URL) is optional — if given, it replaces
