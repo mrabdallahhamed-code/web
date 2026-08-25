@@ -136,62 +136,40 @@ section{padding:100px 0;scroll-margin-top:72px}
 #services{background:#fff;overflow:hidden}
 #services .container{padding-bottom:0}
 
-/* ── SERVICES MARQUEE (continuous scroll, hover to reveal details) ── */
+/* ── SERVICES MARQUEE (continuous scroll; click a card to open its details) ── */
 .srv-marquee{overflow:hidden;position:relative;margin-top:3.5rem;padding:1rem 0 3rem;
   -webkit-mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent);
   mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent)}
-.srv-marquee-track{display:flex;flex-wrap:nowrap;gap:1.6rem;width:max-content;direction:ltr;animation:srvScroll 52s linear infinite;will-change:transform}
-.srv-marquee.is-paused .srv-marquee-track{animation-play-state:paused}
-@keyframes srvScroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.srv-marquee-track{display:flex;flex-wrap:nowrap;gap:1.6rem;width:max-content;will-change:transform}
 
-.srv-mcard{position:relative;direction:rtl;flex-shrink:0;width:290px;height:330px;border-radius:20px;cursor:pointer;
+.srv-mcard{position:relative;flex-shrink:0;width:290px;height:220px;border-radius:20px;cursor:pointer;
   background:linear-gradient(145deg,#f8f9fc,#eef1f8);box-shadow:0 4px 20px rgba(13,36,71,0.08);
-  transition:box-shadow .3s,transform .3s}
-.srv-mcard::before{content:'';position:absolute;top:0;right:0;width:100%;height:4px;border-radius:20px 20px 0 0;background:linear-gradient(90deg,var(--gold),var(--gold2));z-index:2}
-.srv-mcard.tap-open{box-shadow:0 22px 50px rgba(13,36,71,.2);transform:translateY(-6px);z-index:3}
+  transition:box-shadow .3s,transform .3s;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;padding:1.8rem}
+.srv-mcard::before{content:'';position:absolute;top:0;right:0;width:100%;height:4px;border-radius:20px 20px 0 0;background:linear-gradient(90deg,var(--gold),var(--gold2))}
+.srv-mcard:hover{box-shadow:0 18px 40px rgba(13,36,71,.16);transform:translateY(-4px)}
+.srv-mcard .srv-num{font-size:2.6rem;font-weight:900;color:var(--light);line-height:1;margin-bottom:.4rem;font-family:'Amiri',serif}
+.srv-mcard .srv-icon-wrap{width:56px;height:56px;background:linear-gradient(135deg,var(--dark),var(--blue2));border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;margin-bottom:.9rem;box-shadow:0 4px 12px rgba(13,36,71,0.2)}
+.srv-mcard h3{font-size:1.05rem;font-weight:800;color:var(--dark);margin-bottom:.5rem}
+.srv-mcard .srv-hint{display:inline-flex;align-items:center;gap:4px;font-size:.74rem;font-weight:700;color:var(--gold)}
 
-.srv-mcard-face{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;
-  text-align:center;padding:1.8rem;transition:opacity .3s ease}
-.srv-mcard.tap-open .srv-mcard-face{opacity:0;pointer-events:none}
-.srv-mcard-face .srv-num{font-size:2.6rem;font-weight:900;color:var(--light);line-height:1;margin-bottom:.4rem;font-family:'Amiri',serif}
-.srv-mcard-face .srv-icon-wrap{width:56px;height:56px;background:linear-gradient(135deg,var(--dark),var(--blue2));border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;margin-bottom:.9rem;box-shadow:0 4px 12px rgba(13,36,71,0.2)}
-.srv-mcard-face h3{font-size:1.05rem;font-weight:800;color:var(--dark);margin-bottom:.5rem}
-.srv-mcard-face .srv-hint{display:inline-flex;align-items:center;gap:4px;font-size:.74rem;font-weight:700;color:var(--gold)}
-.srv-mcard-face .srv-hint-arrow{transition:transform .3s ease}
-.srv-mcard.tap-open .srv-hint-arrow{transform:translateY(3px)}
-
-.srv-mcard-details{position:absolute;inset:0;padding:1.7rem;opacity:0;transform:translateY(6px);pointer-events:none;
-  overflow-y:auto;transition:opacity .3s ease,transform .3s ease}
-.srv-mcard.tap-open .srv-mcard-details{opacity:1;transform:translateY(0);pointer-events:auto}
-.srv-mcard-details h3{font-size:.98rem;font-weight:800;color:var(--dark);margin-bottom:.5rem}
-.srv-mcard-details p{color:var(--gray);line-height:1.65;font-size:.8rem;margin-bottom:.7rem}
-.srv-list{list-style:none;display:flex;flex-direction:column;gap:4px}
-.srv-list li{font-size:.76rem;color:#555;display:flex;align-items:flex-start;gap:6px;line-height:1.5}
+.srv-list{list-style:none;display:flex;flex-direction:column;gap:4px;text-align:right}
+.srv-list li{font-size:.8rem;color:#555;display:flex;align-items:flex-start;gap:6px;line-height:1.55}
 .srv-list li::before{content:'✓';color:var(--gold);font-weight:700;flex-shrink:0}
 
 /* WHY HWKM / advantages */
 #advantages{overflow:hidden;position:relative}
 #advantages .ssub{max-width:640px}
-.adv-marquee{overflow:hidden;position:relative;margin-top:3.5rem;padding-bottom:.5rem;
-  -webkit-mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent);
-  mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent)}
-.adv-marquee-track{display:flex;flex-wrap:nowrap;gap:1.3rem;width:max-content;direction:ltr;animation:srvScroll 42s linear infinite;will-change:transform}
-.adv-marquee.is-paused .adv-marquee-track{animation-play-state:paused}
+.adv-marquee{overflow:hidden;position:relative;margin-top:3.5rem;padding-bottom:.5rem}
+.adv-marquee-track{display:flex;flex-wrap:nowrap;gap:1.3rem;width:max-content;will-change:transform}
 
-.adv-mcard{position:relative;direction:rtl;flex-shrink:0;width:250px;height:150px;border-radius:16px;cursor:pointer;
-  background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);transition:all .3s}
-.adv-mcard.tap-open{background:rgba(255,255,255,.09);border-color:rgba(212,175,55,.35);transform:translateY(-4px)}
-.adv-mcard-face{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;
-  text-align:center;padding:1rem;gap:.5rem;transition:opacity .3s ease}
-.adv-mcard.tap-open .adv-mcard-face{opacity:0;pointer-events:none}
+.adv-mcard{position:relative;flex-shrink:0;width:250px;height:130px;border-radius:16px;cursor:pointer;
+  background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);transition:all .3s;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:1rem;gap:.5rem}
+.adv-mcard:hover{background:rgba(255,255,255,.09);border-color:rgba(212,175,55,.35);transform:translateY(-3px)}
 .adv-icon{width:42px;height:42px;flex-shrink:0;background:rgba(212,175,55,.16);border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:1.25rem}
-.adv-mcard-face h4{color:#fff;font-size:.9rem;font-weight:800}
-.adv-mcard-details{position:absolute;inset:0;padding:1.1rem;opacity:0;transform:translateY(6px);pointer-events:none;
-  overflow-y:auto;display:flex;flex-direction:column;justify-content:center;transition:opacity .3s ease,transform .3s ease}
-.adv-mcard.tap-open .adv-mcard-details{opacity:1;transform:translateY(0);pointer-events:auto}
-.adv-mcard-details h4{color:var(--gold3);font-size:.85rem;font-weight:800;margin-bottom:.35rem}
-.adv-mcard-details p{color:rgba(255,255,255,.75);font-size:.76rem;line-height:1.6}
-@media(prefers-reduced-motion:reduce){.srv-marquee-track,.adv-marquee-track{animation:none;flex-wrap:wrap;width:100%}}
+.adv-mcard h4{color:#fff;font-size:.88rem;font-weight:800}
+@media(prefers-reduced-motion:reduce){.srv-marquee-track,.adv-marquee-track,.prt-marquee-track{transform:none!important}}
 
 #partners{background:var(--off)}
 .prt-slots{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;margin-top:3rem}
@@ -204,16 +182,12 @@ section{padding:100px 0;scroll-margin-top:72px}
 .prt-marquee{overflow:hidden;position:relative;margin-top:3rem;
   -webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);
   mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
-.prt-marquee-track{display:flex;align-items:center;gap:1.1rem;width:max-content;direction:ltr;
-  animation:prtScroll 32s linear infinite}
-.prt-marquee:hover .prt-marquee-track{animation-play-state:paused}
-@keyframes prtScroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.prt-marquee-track{display:flex;align-items:center;gap:1.1rem;width:max-content;will-change:transform}
 .prt-pill{display:inline-flex;align-items:center;gap:.55rem;background:#fff;border:1px solid #e8eef8;
   border-radius:999px;padding:.95rem 1.7rem;font-weight:800;font-size:.88rem;color:var(--dark);
-  box-shadow:0 4px 18px rgba(13,36,71,.06);white-space:nowrap;flex-shrink:0;direction:rtl;transition:all .25s}
+  box-shadow:0 4px 18px rgba(13,36,71,.06);white-space:nowrap;flex-shrink:0;transition:all .25s}
 .prt-pill:hover{border-color:var(--gold);box-shadow:0 8px 24px rgba(184,151,42,.16);transform:translateY(-2px)}
 .prt-dot{width:8px;height:8px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gold2));flex-shrink:0}
-@media(prefers-reduced-motion:reduce){.prt-marquee-track{animation:none;flex-wrap:wrap;justify-content:center}}
 .prt-slot:hover{border-color:var(--gold);box-shadow:0 8px 24px rgba(13,36,71,.08)}
 .prt-ph{font-size:.85rem;color:var(--gray);font-weight:600;text-align:center;padding:1rem}
 
@@ -294,6 +268,18 @@ footer{background:#070f1e;border-top:1px solid rgba(184,151,42,.2);padding:3rem 
 .demo-modal{background:#fff;border-radius:14px;max-width:440px;width:100%;padding:2rem;position:relative;max-height:90vh;overflow-y:auto}
 .demo-close{position:absolute;top:1rem;left:1rem;background:none;border:none;font-size:1.1rem;cursor:pointer;color:var(--gray);width:32px;height:32px;border-radius:50%;transition:background .2s}
 .demo-close:hover{background:rgba(0,0,0,.05)}
+
+/* ====== SERVICE / ADVANTAGE DETAILS MODAL ====== */
+.dm-overlay{display:none;position:fixed;inset:0;background:rgba(10,22,40,.75);backdrop-filter:blur(4px);z-index:2100;align-items:center;justify-content:center;padding:1.5rem}
+.dm-overlay.open{display:flex}
+.dm-modal{background:#fff;border-radius:18px;max-width:480px;width:100%;padding:2.2rem;position:relative;max-height:85vh;overflow-y:auto;text-align:center}
+.dm-close{position:absolute;top:1rem;left:1rem;background:none;border:none;font-size:1.1rem;cursor:pointer;color:var(--gray);width:32px;height:32px;border-radius:50%;transition:background .2s}
+.dm-close:hover{background:rgba(0,0,0,.05)}
+.dm-icon-wrap{width:60px;height:60px;margin:0 auto 1rem;background:linear-gradient(135deg,var(--dark),var(--blue2));border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:1.7rem;box-shadow:0 4px 14px rgba(13,36,71,.2)}
+.dm-modal h3{font-size:1.2rem;font-weight:800;color:var(--dark);margin-bottom:.8rem}
+.dm-modal .dm-desc{color:var(--gray);line-height:1.8;font-size:.92rem;margin-bottom:1.1rem}
+.dm-modal .srv-list{text-align:right;margin-top:.3rem}
+.dm-modal .srv-list li{font-size:.87rem}
 .demo-body .fg{margin-bottom:1rem}
 .demo-body label{display:block;font-size:.85rem;color:var(--gray);margin-bottom:.4rem}
 .demo-body input{width:100%;padding:.7rem 1rem;border:1px solid #ddd;border-radius:8px;font-family:'Tajawal',sans-serif;font-size:.9rem;color:var(--dark);background:#fff}
@@ -346,8 +332,8 @@ nav{padding:0 1.2rem}
 .about-grid,.contact-grid{grid-template-columns:1fr;gap:2rem}
 .vision-grid{grid-template-columns:1fr}
 .values-grid{grid-template-columns:1fr}
-.srv-mcard{width:250px;height:360px}
-.adv-mcard{width:220px;height:170px}
+.srv-mcard{width:230px;height:200px}
+.adv-mcard{width:210px;height:120px}
 .blog-grid,.faq-grid{grid-template-columns:1fr}
 .footer-grid{grid-template-columns:1fr;gap:2rem}
 .prt-slots{grid-template-columns:repeat(2,1fr)}
@@ -700,6 +686,14 @@ section{padding:60px 0}
   </div>
 </footer>
 
+<!-- SERVICE / ADVANTAGE DETAILS MODAL -->
+<div class="dm-overlay" id="detailsOverlay" onclick="if(event.target===this)closeDetailsModal()">
+  <div class="dm-modal">
+    <button class="dm-close" onclick="closeDetailsModal()" aria-label="Close">✕</button>
+    <div id="detailsBody"></div>
+  </div>
+</div>
+
 <!-- DEMO LEAD MODAL -->
 <div class="demo-overlay" id="demoOverlay" onclick="if(event.target===this)closeDemoModal()">
   <div class="demo-modal">
@@ -949,44 +943,27 @@ const ADVANTAGES = [
     });
   }
 
-  function serviceCardHTML(s){
-    const listHTML = s.list.map(function(li){
-      const style = li.strong ? ' style="font-weight:800;color:var(--dark)"' : '';
-      return '<li'+style+' data-en="'+esc(li.en)+'">'+esc(li.ar)+'</li>';
-    }).join('');
+  function serviceCardHTML(s, idx){
     const borderStyle = s.highlight ? ' style="border:1px solid rgba(212,175,55,.35)"' : '';
-    return '<div class="srv-mcard"'+borderStyle+'>'
-      + '<div class="srv-mcard-face">'
-        + '<div class="srv-num">'+s.num+'</div>'
-        + '<div class="srv-icon-wrap">'+s.icon+'</div>'
-        + '<h3 data-en="'+esc(s.title.en)+'">'+esc(s.title.ar)+'</h3>'
-        + '<div class="srv-hint" data-en="Details">التفاصيل <span class="srv-hint-arrow">▾</span></div>'
-      + '</div>'
-      + '<div class="srv-mcard-details">'
-        + '<h3 data-en="'+esc(s.title.en)+'">'+esc(s.title.ar)+'</h3>'
-        + '<p data-en="'+esc(s.desc.en)+'">'+esc(s.desc.ar)+'</p>'
-        + '<ul class="srv-list">'+listHTML+'</ul>'
-      + '</div>'
+    return '<div class="srv-mcard" data-svc="'+idx+'"'+borderStyle+'>'
+      + '<div class="srv-num">'+s.num+'</div>'
+      + '<div class="srv-icon-wrap">'+s.icon+'</div>'
+      + '<h3 data-en="'+esc(s.title.en)+'">'+esc(s.title.ar)+'</h3>'
+      + '<div class="srv-hint" data-en="View details">التفاصيل ›</div>'
     + '</div>';
   }
 
-  function advCardHTML(a){
-    return '<div class="adv-mcard">'
-      + '<div class="adv-mcard-face">'
-        + '<div class="adv-icon">'+a.icon+'</div>'
-        + '<h4 data-en="'+esc(a.title.en)+'">'+esc(a.title.ar)+'</h4>'
-      + '</div>'
-      + '<div class="adv-mcard-details">'
-        + '<h4 data-en="'+esc(a.title.en)+'">'+esc(a.title.ar)+'</h4>'
-        + '<p data-en="'+esc(a.desc.en)+'">'+esc(a.desc.ar)+'</p>'
-      + '</div>'
+  function advCardHTML(a, idx){
+    return '<div class="adv-mcard" data-adv="'+idx+'">'
+      + '<div class="adv-icon">'+a.icon+'</div>'
+      + '<h4 data-en="'+esc(a.title.en)+'">'+esc(a.title.ar)+'</h4>'
     + '</div>';
   }
 
   const srvTrack = document.getElementById('srvTrack');
   if(srvTrack){
     const once = SERVICES.map(serviceCardHTML).join('');
-    srvTrack.innerHTML = once + once; // duplicated for a seamless -50% loop
+    srvTrack.innerHTML = once + once; // duplicated so the loop is seamless
   }
   const advTrack = document.getElementById('advTrack');
   if(advTrack){
@@ -994,30 +971,81 @@ const ADVANTAGES = [
     advTrack.innerHTML = once + once;
   }
 
-  // Tap/click to reveal a card's details. The strip keeps scrolling non-stop at all
-  // other times — it only pauses while a card is explicitly open, and resumes the
-  // instant it's closed (click again, or click outside).
-  function bindTapToggle(selector, marqueeSelector){
-    var marquee = document.querySelector(marqueeSelector);
-    document.querySelectorAll(selector).forEach(function(card){
-      card.addEventListener('click', function(e){
-        e.stopPropagation();
-        var wasOpen = card.classList.contains('tap-open');
-        document.querySelectorAll(selector+'.tap-open').forEach(function(other){
-          other.classList.remove('tap-open');
-        });
-        if(!wasOpen) card.classList.add('tap-open');
-        if(marquee) marquee.classList.toggle('is-paused', !wasOpen);
-      });
-    });
-    // Clicking anywhere else closes the open card and resumes scrolling.
-    document.addEventListener('click', function(){
-      document.querySelectorAll(selector+'.tap-open').forEach(function(c){ c.classList.remove('tap-open'); });
-      if(marquee) marquee.classList.remove('is-paused');
+  // ===== Details modal: clicking any service/advantage card opens its full details.
+  // The marquee strips themselves never pause — they scroll continuously at all times. =====
+  const detailsOverlay = document.getElementById('detailsOverlay');
+  const detailsBody = document.getElementById('detailsBody');
+  function openDetailsModal(html){
+    if(!detailsOverlay || !detailsBody) return;
+    detailsBody.innerHTML = html;
+    detailsOverlay.classList.add('open');
+  }
+  window.closeDetailsModal = function(){
+    if(detailsOverlay) detailsOverlay.classList.remove('open');
+  };
+  document.addEventListener('click', function(e){
+    const svcCard = e.target.closest('.srv-mcard');
+    if(svcCard){
+      const s = SERVICES[Number(svcCard.dataset.svc)];
+      if(s){
+        const listHTML = s.list.map(function(li){
+          const style = li.strong ? ' style="font-weight:800;color:var(--dark)"' : '';
+          return '<li'+style+' data-en="'+esc(li.en)+'">'+esc(li.ar)+'</li>';
+        }).join('');
+        openDetailsModal(
+          '<div class="dm-icon-wrap">'+s.icon+'</div>'
+          + '<h3 data-en="'+esc(s.title.en)+'">'+esc(s.title.ar)+'</h3>'
+          + '<p class="dm-desc" data-en="'+esc(s.desc.en)+'">'+esc(s.desc.ar)+'</p>'
+          + '<ul class="srv-list">'+listHTML+'</ul>'
+        );
+      }
+      return;
+    }
+    const advCard = e.target.closest('.adv-mcard');
+    if(advCard){
+      const a = ADVANTAGES[Number(advCard.dataset.adv)];
+      if(a){
+        openDetailsModal(
+          '<div class="dm-icon-wrap">'+a.icon+'</div>'
+          + '<h3 data-en="'+esc(a.title.en)+'">'+esc(a.title.ar)+'</h3>'
+          + '<p class="dm-desc" data-en="'+esc(a.desc.en)+'">'+esc(a.desc.ar)+'</p>'
+        );
+      }
+      return;
+    }
+  });
+
+  // ===== Robust marquee engine: measures REAL pixel width after fonts finish loading,
+  // then drives a Web Animations API animation by exact px — immune to the seam glitches
+  // that percentage-based CSS keyframes get when web-font metrics shift late. =====
+  function setupMarquee(track, pxPerSecond){
+    if(!track) return;
+    let anim = null;
+    function start(){
+      if(anim){ anim.cancel(); }
+      const setWidth = track.scrollWidth / 2; // content is duplicated exactly twice
+      if(!setWidth) return;
+      const durationMs = (setWidth / pxPerSecond) * 1000;
+      anim = track.animate(
+        [{ transform:'translateX(0px)' }, { transform:'translateX(-'+setWidth+'px)' }],
+        { duration:durationMs, iterations:Infinity, easing:'linear' }
+      );
+    }
+    const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if(reduceMotion) return;
+    if(document.fonts && document.fonts.ready){
+      document.fonts.ready.then(start).catch(start);
+    } else {
+      start();
+    }
+    let resizeTimer;
+    window.addEventListener('resize', function(){
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(start, 300);
     });
   }
-  bindTapToggle('.srv-mcard', '#srvMarquee');
-  bindTapToggle('.adv-mcard', '#advMarquee');
+  setupMarquee(srvTrack, 42);
+  setupMarquee(advTrack, 34);
 })();
 
 // ===== Strategic partners: edit this list to update the scrolling marquee =====
@@ -1050,9 +1078,34 @@ const PARTNERS = [
     const style = p.url ? ' style="text-decoration:none;color:inherit;cursor:pointer"' : '';
     return '<'+tag+' class="prt-pill"'+href+style+'>'+inner+'</'+tag+'>';
   }
-  // Render the list TWICE back-to-back so the -50% loop is perfectly seamless.
+  // Render the list TWICE back-to-back so the loop is exactly seamless.
   const once = PARTNERS.map(pillHTML).join('');
   track.innerHTML = once + once;
+
+  // Same robust, font-safe marquee engine used for services/advantages.
+  const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(reduceMotion) return;
+  let anim = null;
+  function start(){
+    if(anim){ anim.cancel(); }
+    const setWidth = track.scrollWidth / 2;
+    if(!setWidth) return;
+    const durationMs = (setWidth / 30) * 1000; // ~30px/s
+    anim = track.animate(
+      [{ transform:'translateX(0px)' }, { transform:'translateX(-'+setWidth+'px)' }],
+      { duration:durationMs, iterations:Infinity, easing:'linear' }
+    );
+  }
+  if(document.fonts && document.fonts.ready){
+    document.fonts.ready.then(start).catch(start);
+  } else {
+    start();
+  }
+  let resizeTimer;
+  window.addEventListener('resize', function(){
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(start, 300);
+  });
 })();
 
 // ===== Live feed: opted-in client announcements & upcoming AGMs from the HWKM platform =====
