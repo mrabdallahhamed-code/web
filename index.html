@@ -506,7 +506,7 @@ section{padding:60px 0}
 <section id="intro-video" style="background:linear-gradient(180deg,var(--dark) 0%,var(--blue) 100%);padding:70px 0">
   <div class="container" style="max-width:980px">
     <div class="iv-frame reveal">
-      <video id="introVideo" autoplay muted loop playsinline
+      <video id="introVideo" muted loop playsinline
         onerror="document.getElementById('ivFallback').style.display='flex';this.style.display='none';document.getElementById('ivMuteBtn').style.display='none'">
         <source src="hwkm-intro.mp4" type="video/mp4">
       </video>
@@ -745,6 +745,22 @@ function toggleIntroVideoSound(){
   v.muted = !v.muted;
   if(btn) btn.textContent = v.muted ? '🔇' : '🔊';
 }
+// Play the intro video only while it's actually in view; pause it the moment the
+// visitor scrolls past it, so it never keeps running unseen in the background.
+(function(){
+  var v = document.getElementById('introVideo');
+  if(!v || !window.IntersectionObserver) return;
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if(entry.isIntersecting){
+        v.play().catch(function(){});
+      } else {
+        v.pause();
+      }
+    });
+  }, { threshold: 0.4 });
+  io.observe(v);
+})();
 function openDemoModal(){
   document.getElementById('demoOverlay').classList.add('open');
   document.body.style.overflow='hidden';
