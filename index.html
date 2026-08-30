@@ -134,6 +134,19 @@ section{padding:100px 0;scroll-margin-top:72px}
 .val-text h4{color:#fff;font-size:1rem;font-weight:700;margin-bottom:4px}
 .val-text p{color:rgba(255,255,255,.6);font-size:.88rem;line-height:1.6}
 
+/* ── INTRO VIDEO ── */
+.iv-frame{position:relative;border-radius:20px;overflow:hidden;aspect-ratio:16/9;
+  box-shadow:0 24px 70px rgba(0,0,0,.4);border:1px solid rgba(212,175,55,.3);background:#0a1628}
+.iv-frame video{width:100%;height:100%;object-fit:cover;display:block}
+.iv-mute-btn{position:absolute;bottom:16px;left:16px;width:42px;height:42px;border-radius:50%;
+  background:rgba(10,22,40,.7);backdrop-filter:blur(4px);border:1px solid rgba(255,255,255,.2);
+  color:#fff;font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s}
+.iv-mute-btn:hover{background:rgba(184,151,42,.85);border-color:var(--gold)}
+.iv-fallback{display:none;position:absolute;inset:0;flex-direction:column;align-items:center;justify-content:center;
+  gap:.6rem;background:linear-gradient(145deg,#132a4d,#0a1628);color:rgba(255,255,255,.6)}
+.iv-fallback-icon{font-size:2.4rem;opacity:.5}
+.iv-fallback-text{font-size:.95rem;font-weight:700}
+
 #services{background:#fff}
 #services .container{padding-bottom:3rem}
 
@@ -487,6 +500,25 @@ section{padding:60px 0}
   </div>
 </section>
 
+<!-- INTRO VIDEO — always visible above Services. Replace the <source> path below with
+     the final motion-graphics file once it's ready (drop it in the same folder as this
+     HTML file, e.g. "hwkm-intro.mp4", or point the src at a hosted URL). -->
+<section id="intro-video" style="background:linear-gradient(180deg,var(--dark) 0%,var(--blue) 100%);padding:70px 0">
+  <div class="container" style="max-width:980px">
+    <div class="iv-frame reveal">
+      <video id="introVideo" autoplay muted loop playsinline
+        onerror="document.getElementById('ivFallback').style.display='flex';this.style.display='none';document.getElementById('ivMuteBtn').style.display='none'">
+        <source src="hwkm-intro.mp4" type="video/mp4">
+      </video>
+      <button id="ivMuteBtn" class="iv-mute-btn" onclick="toggleIntroVideoSound()" aria-label="Toggle sound">🔇</button>
+      <div id="ivFallback" class="iv-fallback">
+        <div class="iv-fallback-icon">🎬</div>
+        <div class="iv-fallback-text" data-en="Intro video coming soon">الفيديو التعريفي قريبًا</div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- SERVICES -->
 <section id="services">
   <div class="container">
@@ -706,6 +738,13 @@ section{padding:60px 0}
 </div>
 
 <script>
+function toggleIntroVideoSound(){
+  var v = document.getElementById('introVideo');
+  var btn = document.getElementById('ivMuteBtn');
+  if(!v) return;
+  v.muted = !v.muted;
+  if(btn) btn.textContent = v.muted ? '🔇' : '🔊';
+}
 function openDemoModal(){
   document.getElementById('demoOverlay').classList.add('open');
   document.body.style.overflow='hidden';
