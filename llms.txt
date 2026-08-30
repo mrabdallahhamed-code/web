@@ -30,6 +30,10 @@ Startups seeking institutionalization, growing SMEs, and large listed companies 
 - حلول حوكم (Solutions): /#solutions
 - الأسئلة الشائعة (FAQ): /#faq
 - المدونة (Blog): /#blog
+  - الحوكمة المؤسسية في السعودية: /blog/corporate-governance-saudi-arabia-reality-challenges/
+  - مجلس الإدارة الفعّال: سبعة مبادئ: /blog/effective-board-seven-principles/
+  - الجمعية العامة للمساهمين: الدليل الكامل: /blog/general-assembly-shareholders-guide/
+  - الحوكمة في الشركات الصغيرة والمتوسطة: /blog/governance-smes-growth-impact/
 - تواصل معنا (Contact): /#contact
 - جميع الروابط (Links / social): /links/
 

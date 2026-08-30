@@ -1,0 +1,73 @@
+/* blog.css — shared styles for HWKM blog article pages, matching main site identity */
+:root{--dark:#0D2447;--blue:#1A3A6B;--blue2:#1e4d8c;--gold:#B8972A;--gold2:#D4AF37;--off:#f8f6f1;--gray:#7A90B0;--light:#EAF0F8;--text:#1a1a2e}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Tajawal',sans-serif;color:var(--text);background:#fff;line-height:1.7}
+img{max-width:100%;display:block}
+a{color:inherit}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:1000;background:rgba(13,36,71,0.97);backdrop-filter:blur(12px);border-bottom:1px solid rgba(184,151,42,0.3);padding:0 4rem;height:72px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none}
+.nav-logo img{height:44px;width:auto;object-fit:contain}
+.nav-links{display:flex;align-items:center;gap:1.6rem;list-style:none}
+.nav-links a{color:rgba(255,255,255,0.85);text-decoration:none;font-size:.9rem;font-weight:500;transition:color .2s}
+.nav-links a:hover{color:var(--gold2)}
+.nav-cta{background:var(--gold)!important;color:var(--dark)!important;padding:8px 20px;border-radius:4px;font-weight:700!important}
+.nav-cta:hover{background:var(--gold2)!important;color:var(--dark)!important}
+@media(max-width:900px){nav{padding:0 1.2rem}.nav-links{gap:1rem}.nav-links li:not(.nav-cta-li){display:none}}
+
+/* CONTAINER */
+.container{max-width:800px;margin:0 auto;padding:0 1.5rem}
+
+/* BREADCRUMB */
+.breadcrumb{font-size:.85rem;color:var(--gray);margin:2rem 0 1rem;display:flex;gap:.5rem;flex-wrap:wrap}
+.breadcrumb a{color:var(--blue2);text-decoration:none}
+.breadcrumb a:hover{text-decoration:underline}
+.breadcrumb span{color:#c3cede}
+
+/* ARTICLE HEADER */
+.article-header{padding:1rem 0 2.5rem;border-bottom:1px solid #e8eef8;margin-bottom:2.5rem}
+.article-cat{display:inline-block;color:var(--gold);font-size:.8rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:1rem;padding-bottom:6px;border-bottom:2px solid var(--gold)}
+.article-title{font-size:2.2rem;font-weight:900;color:var(--dark);line-height:1.3;margin-bottom:1rem}
+.article-meta{font-size:.9rem;color:var(--gray);display:flex;gap:1rem;align-items:center;flex-wrap:wrap}
+
+/* ARTICLE BODY */
+.article-body{padding-bottom:3rem}
+.article-body h2{font-size:1.5rem;font-weight:800;color:var(--dark);margin:2.2rem 0 1rem}
+.article-body h3{font-size:1.2rem;font-weight:700;color:var(--blue2);margin:1.8rem 0 .8rem}
+.article-body p{font-size:1.02rem;color:#2c2c3d;margin-bottom:1.1rem;text-align:justify;text-align-last:right}
+.article-body ul,.article-body ol{margin:0 0 1.1rem 0;padding-right:1.4rem}
+.article-body li{font-size:1.02rem;color:#2c2c3d;margin-bottom:.5rem}
+.article-body strong{color:var(--dark);font-weight:800}
+.article-body hr{border:none;border-top:1px solid #e8eef8;margin:2.5rem 0}
+
+/* RELATED */
+.related-box{background:var(--off);border-radius:16px;padding:1.8rem}
+.related-box h4{font-size:1rem;font-weight:800;color:var(--dark);margin-bottom:1rem}
+.related-box ul{list-style:none;padding:0}
+.related-box li{margin-bottom:.7rem}
+.related-box a{color:var(--blue2);text-decoration:none;font-weight:600;font-size:.95rem}
+.related-box a:hover{color:var(--gold)}
+
+/* CTA */
+.article-cta{background:linear-gradient(135deg,#0a1628 0%,var(--dark) 50%,var(--blue) 100%);border-radius:20px;padding:2.5rem 2rem;text-align:center;margin:2.5rem 0}
+.article-cta h3{color:#fff;font-size:1.4rem;font-weight:800;margin-bottom:.7rem}
+.article-cta p{color:rgba(255,255,255,.75);margin-bottom:1.5rem;font-size:.95rem}
+.btn-p{background:var(--gold);color:var(--dark);padding:14px 32px;border-radius:6px;font-weight:700;font-size:1rem;text-decoration:none;display:inline-block;transition:all .2s}
+.btn-p:hover{background:var(--gold2);transform:translateY(-2px)}
+
+/* FOOTER */
+footer{background:var(--dark);color:#fff;padding:3rem 0 1.5rem;margin-top:2rem}
+.footer-inner{max-width:800px;margin:0 auto;padding:0 1.5rem;display:flex;flex-direction:column;gap:1.2rem;align-items:flex-start}
+footer img{height:36px}
+footer p{color:rgba(255,255,255,.6);font-size:.85rem}
+.footer-links{display:flex;gap:1.2rem;flex-wrap:wrap}
+.footer-links a{color:rgba(255,255,255,.75);text-decoration:none;font-size:.85rem}
+.footer-links a:hover{color:var(--gold2)}
+.footer-btm{border-top:1px solid rgba(255,255,255,.1);width:100%;padding-top:1.2rem;font-size:.8rem;color:rgba(255,255,255,.5)}
+
+@media(max-width:600px){
+  .article-title{font-size:1.6rem}
+  .container{padding:0 1.2rem}
+}
