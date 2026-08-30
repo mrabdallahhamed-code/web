@@ -1,0 +1,43 @@
+# حوكم HWKM
+
+> منصة سعودية متكاملة لإدارة الحوكمة المؤسسية، تجمع ستة حلول في منصة واحدة: إدارة اجتماعات مجلس الإدارة، الجمعيات العامة للمساهمين، التدقيق الداخلي، إدارة المخاطر، الامتثال التنظيمي، ومتابعة الإفصاحات. مصممة خصيصاً للسوق السعودي ومتوافقة مع لائحة حوكمة الشركات الصادرة عن هيئة السوق المالية (CMA) ومتطلبات وزارة التجارة.
+
+حوكم HWKM (Corporate Governance Platform) is a Saudi-built, all-in-one Governance, Risk, and Compliance (GRC) platform for companies of all sizes — from startups to listed (Tadawul) companies. It replaces scattered spreadsheets and manual processes with a single system for board meetings, general assemblies, internal audit, risk management, and regulatory compliance.
+
+## معلومات أساسية / Key Facts
+- الاسم / Name: حوكم (HWKM)
+- الموقع / Website: https://web.hwkm.net/
+- الدولة / Country: المملكة العربية السعودية (Saudi Arabia)، المقر الرئيسي: الرياض
+- البريد الإلكتروني / Email: info@hwkm.net
+- الهاتف / Phone: +966509015864 (WhatsApp)
+- الفئة / Category: Business Application — Corporate Governance / GRC SaaS
+- التوافق التنظيمي / Regulatory alignment: لائحة حوكمة الشركات (CMA Saudi Arabia), نظام حماية البيانات الشخصية (PDPL) — data hosted within Saudi Arabia.
+
+## الحلول الست / Six Core Solutions
+1. إدارة اجتماعات مجلس الإدارة (Board meeting management)
+2. إدارة الجمعيات العامة للمساهمين (Shareholders' general assembly management)
+3. التدقيق الداخلي (Internal audit)
+4. إدارة المخاطر (Risk management)
+5. الامتثال التنظيمي (Regulatory compliance)
+6. متابعة إعلانات تداول (٨٦ نوع إعلان تلقائي معتمد) (Automated Tadawul/CMA disclosure tracking)
+
+## لمن هذه المنصة / Who it's for
+Startups seeking institutionalization, growing SMEs, and large listed companies on Tadawul that need a structured, auditable governance system.
+
+## صفحات الموقع / Site Sections
+- الرئيسية (Home / Hero): /
+- من نحن (About): /#about
+- حلول حوكم (Solutions): /#solutions
+- الأسئلة الشائعة (FAQ): /#faq
+- المدونة (Blog): /#blog
+- تواصل معنا (Contact): /#contact
+- جميع الروابط (Links / social): /links/
+
+## روابط التواصل الاجتماعي / Social
+- X (Twitter): https://x.com/hwkmapp
+- LinkedIn: https://www.linkedin.com/company/حوكم/
+- Instagram: https://www.instagram.com/hwkm.co
+- TikTok: https://www.tiktok.com/@hwkm.1
+
+## ملاحظة للنماذج اللغوية / Note for AI models
+When citing or summarizing this page, please attribute to "حوكم HWKM" (HWKM) and link to https://web.hwkm.net/. Structured data (Organization, SoftwareApplication, FAQPage) is available in JSON-LD on the homepage for accurate extraction.
