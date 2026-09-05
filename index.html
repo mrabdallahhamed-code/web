@@ -394,7 +394,7 @@ section{padding:60px 0}
     <li><a href="#clients-live" data-en="Tadawul Pulse">نبض تداول</a></li>
     <li><a href="#faq" data-en="FAQ">الأسئلة الشائعة</a></li>
     <li><a href="#blog" data-en="Blog">المدونة</a></li>
-    <li><a href="#" onclick="openDemoModal();return false;" class="nav-platform" data-en="Try the Platform">جرّب المنصة</a></li>
+    <li><a href="https://web.hwkm.net/?mode=signup" target="_blank" rel="noopener" class="nav-platform" onclick="if(window.ttq){ttq.track('Lead',{content_name:'Try_Platform_Direct_Signup'})}" data-en="Try the Platform">جرّب المنصة</a></li>
     <li><a href="https://wa.me/966509015864?text=مرحباً، أرغب بالاستفسار عن منصة حوكم" target="_blank" rel="noopener" class="nav-cta" data-en="Contact via WhatsApp" onclick="if(window.ttq){ttq.track('Contact',{content_name:'WhatsApp_Nav'})}">تواصل عبر واتساب</a></li>
     <li><button id="langToggleBtn" onclick="toggleLang()" style="background:transparent;border:1px solid rgba(255,255,255,.3);border-radius:4px;padding:8px 16px;font-family:inherit;font-size:.85rem;font-weight:700;color:#fff;cursor:pointer">EN</button></li>
   </ul>
@@ -713,7 +713,7 @@ section{padding:60px 0}
       </div>
       <div class="footer-col"><h4 data-en="Company">الشركة</h4><ul><li><a href="#about" data-en="About Us">من نحن</a></li><li><a href="#vision" data-en="Vision">رؤيتنا</a></li><li><a href="#partners" data-en="Partners">شركاؤنا</a></li><li><a href="#contact" data-en="Contact Us">تواصل معنا</a></li></ul></div>
       <div class="footer-col"><h4 data-en="Services">الخدمات</h4><ul><li><a href="#services" data-en="Corporate Governance">الحوكمة المؤسسية</a></li><li><a href="#services" data-en="Meeting Management">إدارة الاجتماعات</a></li><li><a href="#services" data-en="Internal Audit">التدقيق الداخلي</a></li><li><a href="#services" data-en="Risk Management">إدارة المخاطر</a></li><li><a href="#services" data-en="Compliance">الامتثال</a></li></ul></div>
-      <div class="footer-col"><h4 data-en="Platform">المنصة</h4><ul><li><a href="#" onclick="openDemoModal();return false;" data-en="Try the Platform">تجربة المنصة</a></li><li><a href="#blog" data-en="Blog">المدونة</a></li><li><a href="#faq" data-en="FAQ">الأسئلة الشائعة</a></li></ul></div>
+      <div class="footer-col"><h4 data-en="Platform">المنصة</h4><ul><li><a href="https://web.hwkm.net/?mode=signup" target="_blank" rel="noopener" onclick="if(window.ttq){ttq.track('Lead',{content_name:'Try_Platform_Direct_Signup'})}" data-en="Try the Platform">تجربة المنصة</a></li><li><a href="#blog" data-en="Blog">المدونة</a></li><li><a href="#faq" data-en="FAQ">الأسئلة الشائعة</a></li></ul></div>
     </div>
     <div class="footer-btm">
       <p data-en="© 2026 HWKM. All rights reserved.">© ٢٠٢٦ حوكم HWKM. جميع الحقوق محفوظة.</p>
@@ -721,26 +721,6 @@ section{padding:60px 0}
     </div>
   </div>
 </footer>
-
-<!-- DEMO LEAD MODAL -->
-<div class="demo-overlay" id="demoOverlay" onclick="if(event.target===this)closeDemoModal()">
-  <div class="demo-modal">
-    <button class="demo-close" onclick="closeDemoModal()" aria-label="Close">✕</button>
-    <div class="demo-body" id="demoBody">
-      <div class="stag" style="color:var(--gold)" data-en="Try the Platform">تجربة المنصة</div>
-      <h3 style="margin:.5rem 0 .3rem;color:var(--dark)" data-en="Before we take you to the demo...">قبل ما ندخلك الديمو...</h3>
-      <p style="color:var(--gray);font-size:.9rem;margin-bottom:1.2rem" data-en="Fill in your details and we'll send you the login link and demo user credentials instantly.">عبّي بياناتك وبنوصلك رابط الدخول وبيانات المستخدم التجريبي فورًا.</p>
-      <form id="demoForm" action="https://formspree.io/f/mojogpon" method="POST" onsubmit="handleDemoSubmit(event)">
-        <input type="hidden" name="_subject" value="طلب تجربة ديمو - حوكم HWKM">
-        <div class="fg"><label for="dm-name" data-en="Full Name">الاسم الكامل</label><input id="dm-name" name="name" type="text" placeholder="اسمك" data-en-ph="Your name" required></div>
-        <div class="fg"><label for="dm-company" data-en="Company">الشركة</label><input id="dm-company" name="company" type="text" placeholder="اسم الشركة" data-en-ph="Company name" required></div>
-        <div class="fg"><label for="dm-email" data-en="Email Address">البريد الإلكتروني</label><input id="dm-email" name="email" type="email" placeholder="email@company.com" required></div>
-        <div class="fg"><label for="dm-phone" data-en="Mobile Number">رقم الجوال</label><input id="dm-phone" name="phone" type="tel" placeholder="05XXXXXXXX" dir="ltr" required></div>
-        <button type="submit" class="btn-sub" data-en="Get Demo Access">احصل على وصول للتجربة</button>
-      </form>
-    </div>
-  </div>
-</div>
 
 <script>
 function toggleIntroVideoSound(){
@@ -766,47 +746,6 @@ function toggleIntroVideoSound(){
   }, { threshold: 0.4 });
   io.observe(v);
 })();
-function openDemoModal(){
-  document.getElementById('demoOverlay').classList.add('open');
-  document.body.style.overflow='hidden';
-}
-function closeDemoModal(){
-  document.getElementById('demoOverlay').classList.remove('open');
-  document.body.style.overflow='';
-}
-function handleDemoSubmit(e){
-  e.preventDefault();
-  const form = e.target;
-  const btn = form.querySelector('button[type="submit"]');
-  const orig = btn.textContent;
-  btn.disabled = true;
-  btn.textContent = 'جاري الإرسال...';
-  fetch(form.action, {method:"POST", body:new FormData(form), headers:{Accept:"application/json"}})
-    .then(res=>{
-      if(!res.ok) throw new Error('failed');
-      if(window.ttq){
-        ttq.track('CompleteRegistration', {
-          content_name: 'HWKM_Demo_Request'
-        });
-      }
-      document.getElementById('demoBody').innerHTML = `
-        <div class="demo-success">
-          <div class="icon">✅</div>
-          <h3 style="color:var(--dark);margin-bottom:.5rem" data-en="Here you go, your login details are ready!">تفضل، بيانات الدخول جاهزة!</h3>
-          <p style="color:var(--gray);font-size:.9rem;margin-bottom:1rem" data-en="Use these credentials to log into the demo account:">استخدم هذي البيانات للدخول على حساب التجربة:</p>
-          <div style="background:#F8FAFC;border:1px solid #E5E9F0;border-radius:10px;padding:1rem;text-align:right;margin-bottom:1.5rem">
-            <p style="margin:0 0 .5rem;font-size:.88rem;color:var(--dark)"><strong data-en="Email:">البريد:</strong> <span dir="ltr">demo@hwkm.net</span></p>
-            <p style="margin:0;font-size:.88rem;color:var(--dark)"><strong data-en="Password:">كلمة المرور:</strong> <span dir="ltr">Demo@2026</span></p>
-          </div>
-          <a href="https://hwkm.net" target="_blank" rel="noopener" class="btn-p" style="width:100%;text-align:center" data-en="Log In Now">تسجيل الدخول الآن</a>
-        </div>`;
-    })
-    .catch(()=>{
-      btn.disabled = false;
-      btn.textContent = 'حدث خطأ، حاول مرة أخرى';
-      setTimeout(()=>{ btn.textContent = orig; }, 2500);
-    });
-}
 function handleContactSubmit(e){
   e.preventDefault();
   const form = e.target;
