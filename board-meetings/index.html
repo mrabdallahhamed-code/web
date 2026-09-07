@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>إدارة اجتماعات مجلس الإدارة | حوكم</title>
+<meta name="description" content="أدر اجتماعات مجلس الإدارة وملفات الاجتماعات والقرارات والمهام والمتابعة عبر منصة حوكم الرقمية.">
+<meta name="robots" content="index, follow">
+<meta name="author" content="حوكم HWKM">
+<link rel="canonical" href="https://web.hwkm.net/board-meetings/">
+<meta name="theme-color" content="#0D2447">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ar_SA">
+<meta property="og:site_name" content="حوكم HWKM">
+<meta property="og:title" content="إدارة اجتماعات مجلس الإدارة | حوكم">
+<meta property="og:description" content="أدر اجتماعات مجلس الإدارة وملفات الاجتماعات والقرارات والمهام والمتابعة عبر منصة حوكم الرقمية.">
+<meta property="og:url" content="https://web.hwkm.net/board-meetings/">
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "الرئيسية",
+      "item": "https://web.hwkm.net/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "إدارة اجتماعات مجلس الإدارة",
+      "item": "https://web.hwkm.net/board-meetings/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "هل يمكن تحديد مهلة زمنية للرد على طلب الاجتماع؟",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "نعم، يمكن تحديد عدد أيام محدد لمهلة رد الأعضاء على طلب الاجتماع، مع إشعار تلقائي وعرض واضح لحالة كل عضو (استجاب أو لم يستجب بعد)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "هل يظهر التصويت على القرارات في المحضر النهائي؟",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "نعم، المحضر النهائي يُولَّد تلقائيًا من بيانات الحضور الفعلي ونتائج التصويت على كل قرار، بحيث يعكس المحضر ما جرى فعليًا في الاجتماع."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "هل تدعم المنصة اجتماعات اللجان المتخصصة بخصوصية منفصلة عن المجلس؟",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "نعم، قرارات كل لجنة (كالترشيحات أو المراجعة) تظهر فقط لأعضائها ولمدير النظام، بمعزل تام عن باقي أعضاء المجلس غير الأعضاء في تلك اللجنة."
+      }
+    }
+  ]
+}
+</script>
+<style>
+:root{--dark:#0D2447;--blue:#1A3A6B;--blue2:#1e4d8c;--gold:#B8972A;--gold2:#D4AF37;--off:#f8f6f1;--gray:#7A90B0;--light:#EAF0F8;--text:#1a1a2e}
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+p{text-align:justify;text-align-last:right}
+body{font-family:'Tajawal',sans-serif;color:var(--text);overflow-x:hidden;background:#fff}
+a{color:inherit}
+nav{position:fixed;top:0;right:0;left:0;z-index:1000;background:rgba(13,36,71,0.97);backdrop-filter:blur(12px);border-bottom:1px solid rgba(184,151,42,0.3);padding:0 4rem;height:72px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none}
+.nav-logo img{height:44px;width:auto;object-fit:contain}
+.nav-links{display:flex;align-items:center;gap:2rem;list-style:none}
+.nav-links a{color:rgba(255,255,255,0.85);text-decoration:none;font-size:.9rem;font-weight:600}
+.nav-links a:hover{color:var(--gold2)}
+.nav-cta{background:var(--gold)!important;color:var(--dark)!important;padding:8px 20px!important;border-radius:4px;font-weight:700!important;text-decoration:none}
+.nav-cta:hover{background:var(--gold2)!important}
+
+.lp-hero{background:linear-gradient(135deg,#0a1628 0%,#0D2447 40%,#1A3A6B 100%);padding:160px 4rem 90px;color:#fff}
+.lp-hero-inner{max-width:900px;margin:0 auto;text-align:center}
+.lp-breadcrumb{font-size:.82rem;color:rgba(255,255,255,.6);margin-bottom:1.2rem}
+.lp-breadcrumb a{color:var(--gold2);text-decoration:none}
+.lp-hero h1{font-size:2.6rem;font-weight:900;line-height:1.25;margin-bottom:1.2rem}
+.lp-hero .lead{font-size:1.08rem;color:rgba(255,255,255,.78);line-height:1.9;max-width:760px;margin:0 auto 2rem}
+.lp-hero .btn-p{background:var(--gold);color:var(--dark);padding:14px 34px;border-radius:6px;font-weight:700;font-size:1rem;text-decoration:none;display:inline-block}
+.lp-hero .btn-p:hover{background:var(--gold2)}
+
+main{max-width:880px;margin:0 auto;padding:70px 4rem}
+.lp-sec{margin-bottom:56px}
+.lp-tag{display:inline-block;color:var(--gold);font-size:.8rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:.8rem;padding-bottom:6px;border-bottom:2px solid var(--gold)}
+.lp-sec h2{font-size:1.85rem;font-weight:900;color:var(--dark);margin-bottom:1rem;line-height:1.3}
+.lp-sec h3{font-size:1.15rem;font-weight:800;color:var(--blue);margin:1.3rem 0 .5rem}
+.lp-sec p{font-size:1rem;color:#333;line-height:1.95;margin-bottom:1rem}
+.lp-list{list-style:none;margin-top:1rem}
+.lp-list li{padding:.6rem 0 .6rem 0;padding-right:1.8rem;position:relative;font-size:.98rem;color:#333;line-height:1.7;border-bottom:1px solid #eee}
+.lp-list li:last-child{border-bottom:none}
+.lp-list li::before{content:'✓';position:absolute;right:0;color:var(--gold);font-weight:900}
+.lp-audience{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;margin-top:1.2rem}
+.lp-audience div{background:var(--off);border-radius:10px;padding:1.2rem;font-size:.92rem;color:var(--dark);font-weight:700;border-right:4px solid var(--gold)}
+.lp-faq details{background:var(--off);border-radius:10px;padding:1rem 1.3rem;margin-bottom:.8rem}
+.lp-faq summary{font-weight:800;color:var(--dark);cursor:pointer;font-size:.98rem}
+.lp-faq p{margin-top:.7rem;margin-bottom:0;color:#444}
+.lp-cta-box{background:var(--dark);border-radius:16px;padding:3rem 2.5rem;text-align:center;color:#fff}
+.lp-cta-box h2{color:#fff;font-size:1.7rem;margin-bottom:.8rem}
+.lp-cta-box p{color:rgba(255,255,255,.75);margin-bottom:1.6rem}
+.lp-cta-box .btn-p{background:var(--gold);color:var(--dark);padding:14px 34px;border-radius:6px;font-weight:700;font-size:1rem;text-decoration:none;display:inline-block}
+.lp-cta-box .btn-p:hover{background:var(--gold2)}
+.lp-related{display:flex;gap:1rem;flex-wrap:wrap;margin-top:1rem}
+.lp-related a{background:var(--light);color:var(--blue);text-decoration:none;font-weight:700;font-size:.9rem;padding:10px 18px;border-radius:8px}
+.lp-related a:hover{background:var(--gold);color:var(--dark)}
+.lp-home-link{display:inline-block;margin-top:.5rem;color:var(--blue);font-weight:700;text-decoration:none;font-size:.92rem}
+.lp-home-link:hover{color:var(--gold)}
+
+footer{background:var(--dark);color:rgba(255,255,255,.7);padding:3rem 4rem;text-align:center;font-size:.85rem}
+footer a{color:var(--gold2);text-decoration:none}
+
+@media(max-width:768px){
+  nav{padding:0 1.2rem}.nav-links{display:none}
+  .lp-hero{padding:120px 1.2rem 60px}.lp-hero h1{font-size:1.9rem}
+  main{padding:50px 1.2rem}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="https://web.hwkm.net/" class="nav-logo">
+    <picture>
+      <source srcset="https://web.hwkm.net/assets/logo.webp" type="image/webp">
+      <img src="https://web.hwkm.net/assets/logo.jpg" alt="حوكم HWKM">
+    </picture>
+  </a>
+  <ul class="nav-links">
+    <li><a href="https://web.hwkm.net/#services">خدماتنا</a></li>
+    <li><a href="https://web.hwkm.net/#faq">الأسئلة الشائعة</a></li>
+    <li><a href="https://web.hwkm.net/#contact" class="nav-cta">تواصل معنا</a></li>
+  </ul>
+</nav>
+
+
+<section class="lp-hero">
+  <div class="lp-hero-inner">
+    <div class="lp-breadcrumb"><a href="https://web.hwkm.net/">الرئيسية</a> ← إدارة اجتماعات مجلس الإدارة</div>
+    <h1>إدارة اجتماعات مجلس الإدارة</h1>
+    <p class="lead">من طلب الاجتماع إلى المحضر الموقّع إلكترونيًا — دورة اجتماعات مجلس إدارة ولجان كاملة، بلا ورق ولا رسائل متفرقة بين الأعضاء.</p>
+    <a href="https://web.hwkm.net/#contact" class="btn-p">احجز عرضًا تجريبيًا للمنصة</a>
+  </div>
+</section>
+
+<main>
+  <section class="lp-sec">
+    <div class="lp-tag">نظرة عامة</div>
+    <p>اجتماعات مجلس الإدارة هي القلب النابض لأي منظومة حوكمة — فيها تُتخذ القرارات الاستراتيجية، وتُراقَب الإدارة التنفيذية، وتُوثَّق مسؤولية كل عضو أمام المساهمين والجهات الرقابية. لكن في الواقع العملي، كثير من الشركات في السعودية لا تزال تدير هذه الاجتماعات عبر بريد إلكتروني متناثر، مجموعات واتساب، وملفات Word يُعاد تعديلها يدويًا بعد كل اجتماع، بلا مرجعية موحّدة يرجع لها الأعضاء وقت الحاجة.</p>
+<p>منصة حوكم تحوّل إدارة اجتماعات مجلس الإدارة واللجان المتخصصة إلى دورة إلكترونية متكاملة، من أول دعوة حتى آخر توقيع، بحيث يعرف كل عضو مجلس بالضبط أين يقف كل قرار، ومتى اتُّخذ، وبمسؤولية من، دون الحاجة للرجوع لسلسلة رسائل متفرقة أو ملفات مبعثرة بين عدة أجهزة.</p>
+  </section>
+
+  <section class="lp-sec">
+    <h2>التحدي الذي تواجهه الشركات</h2>
+    <p>تنسيق موعد اجتماع مجلس إدارة عبر الرسائل النصية أو البريد الإلكتروني يستغرق وقتًا طويلاً، ويضيع فيه من وافق ومن لم يرد بعد. جدول الأعمال يُكتب يدويًا في كل مرة، والقرارات تُدوَّن في محضر منفصل قد يتأخر توقيعه أسابيع، بينما تبقى بعض التصويتات بلا توثيق واضح لسبب الامتناع أو الاعتراض.</p>
+<p>غياب مهلة زمنية واضحة للرد على طلبات الاجتماعات، وغياب ربط واضح بين القرار والتصويت والمحضر النهائي، يجعل تتبع المسؤولية والامتثال أصعب مما ينبغي.</p>
+  </section>
+
+  <section class="lp-sec">
+    <h2>كيف تساعدك حوكم</h2>
+    <p>طلب الاجتماع وموافقات الأعضاء ومتابعتها تتم إلكترونيًا بالكامل في حوكم، بمهلة زمنية محددة للرد وإشعار فوري تلقائي لكل عضو. بمجرد اكتمال الموافقة، يُبنى جدول الأعمال تلقائيًا وتُولَّد الدعوة الرسمية وتُرفع دون أي خطوة يدوية إضافية.</p>
+<p>كل بند من بنود الاجتماع يتحول تلقائيًا إلى قرار قابل للتصويت التفاعلي الفوري (موافق / معارض / ممتنع)، مع إلزام كتابة مبرر واضح عند اختيار الامتناع — بحيث لا يبقى أي تصويت غامضًا. بعد انتهاء الاجتماع، يُولَّد المحضر النهائي تلقائيًا من بيانات الحضور الفعلي ونتائج القرارات، ويُرسل مباشرة للتوقيع الإلكتروني دون تدخل يدوي.</p>
+<p>تدعم المنصة أيضًا خطة سنوية للاجتماعات (سنوية أو نصف سنوية أو ربع سنوية) قابلة للتحويل إلى اجتماع فعلي بضغطة زر واحدة، إلى جانب دعم كامل للجان المتخصصة (الترشيحات، المكافآت، المراجعة) بنفس دورة العمل وبخصوصية تامة لكل لجنة.</p>
+  </section>
+
+  <section class="lp-sec">
+    <h2>أهم المزايا</h2>
+    <ul class="lp-list">
+      <li>طلب اجتماع وموافقات إلكترونية بمهلة زمنية محددة وإشعار فوري</li>
+<li>جدول أعمال يُبنى تلقائيًا لكل اجتماع</li>
+<li>دعوة رسمية تُولَّد وتُرفع تلقائيًا فور اكتمال الموافقة</li>
+<li>تصويت تفاعلي فوري على كل قرار مع مساءلة عند الامتناع</li>
+<li>محضر نهائي يُولَّد تلقائيًا ويُرسل للتوقيع الإلكتروني</li>
+<li>خطة سنوية للاجتماعات قابلة للتحويل لاجتماع فعلي بضغطة واحدة</li>
+<li>دعم كامل للجان المتخصصة بخصوصية تامة لكل لجنة</li>
+    </ul>
+  </section>
+
+  <section class="lp-sec">
+    <h2>لمن هذا الحل؟</h2>
+    <div class="lp-audience">
+      <div>مجالس إدارة الشركات المساهمة المدرجة وغير المدرجة</div>
+<div>اللجان المتخصصة (الترشيحات، المكافآت، المراجعة)</div>
+<div>أمناء سر مجالس الإدارة المسؤولون عن التوثيق والمتابعة</div>
+<div>الشركات ذات المسؤولية المحدودة التي تدير مجلس إدارة أو مجلس مديرين</div>
+    </div>
+  </section>
+
+  <section class="lp-sec lp-faq">
+    <h2>أسئلة شائعة</h2>
+    <details><summary>هل يمكن تحديد مهلة زمنية للرد على طلب الاجتماع؟</summary><p>نعم، يمكن تحديد عدد أيام محدد لمهلة رد الأعضاء على طلب الاجتماع، مع إشعار تلقائي وعرض واضح لحالة كل عضو (استجاب أو لم يستجب بعد).</p></details>
+<details><summary>هل يظهر التصويت على القرارات في المحضر النهائي؟</summary><p>نعم، المحضر النهائي يُولَّد تلقائيًا من بيانات الحضور الفعلي ونتائج التصويت على كل قرار، بحيث يعكس المحضر ما جرى فعليًا في الاجتماع.</p></details>
+<details><summary>هل تدعم المنصة اجتماعات اللجان المتخصصة بخصوصية منفصلة عن المجلس؟</summary><p>نعم، قرارات كل لجنة (كالترشيحات أو المراجعة) تظهر فقط لأعضائها ولمدير النظام، بمعزل تام عن باقي أعضاء المجلس غير الأعضاء في تلك اللجنة.</p></details>
+
+  </section>
+
+  <section class="lp-sec lp-cta-box">
+    <h2>جاهز تشوف حوكم تشتغل بشركتك؟</h2>
+    <p>احجز عرضًا تجريبيًا مجانيًا وشوف بنفسك كيف تدير هذا الجانب من الحوكمة إلكترونيًا بالكامل.</p>
+    <a href="https://web.hwkm.net/#contact" class="btn-p">احجز عرضك التجريبي الآن</a>
+  </section>
+
+  <section class="lp-sec">
+    <h2 style="font-size:1.2rem">صفحات ذات علاقة</h2>
+    <div class="lp-related">
+      <a href="https://web.hwkm.net/governance/">الحوكمة المؤسسية في السعودية</a>
+<a href="https://web.hwkm.net/risk-management/">إدارة المخاطر المؤسسية</a>
+    </div>
+    <div><a href="https://web.hwkm.net/" class="lp-home-link">← العودة للصفحة الرئيسية</a></div>
+  </section>
+</main>
+
+
+<footer>
+  <p>© حوكم HWKM — منصة الحوكمة والمخاطر والامتثال في السعودية</p>
+  <p style="margin-top:.5rem"><a href="https://web.hwkm.net/">الصفحة الرئيسية</a> · <a href="mailto:info@hwkm.net">info@hwkm.net</a> · <a href="https://wa.me/966509015864">واتساب</a></p>
+</footer>
+
+</body>
+</html>
