@@ -12,8 +12,8 @@ HWKM (حوكم) is a Saudi-built, all-in-one Governance, Risk and Compliance (GR
 - البريد / Email: info@hwkm.net
 - الهاتف / Phone: +966509015864 (WhatsApp)
 - الفئة / Category: Business Application — Corporate Governance / GRC SaaS
-- لغة الموقع / Language: العربية (مع تبديل إنجليزي في الصفحة الرئيسية)
-- التوافق / Alignment: لائحة حوكمة الشركات (هيئة السوق المالية)، متطلبات وزارة التجارة، ونظام حماية البيانات الشخصية (PDPL)
+- لغة الموقع / Languages: العربية (الأصل) والإنجليزية الكاملة — Arabic (default) and full English at https://web.hwkm.net/en/
+- التوافق / Alignment: مبنية وفق لائحة حوكمة الشركات (هيئة السوق المالية) ومتطلبات وزارة التجارة
 
 ## الحلول السبعة / The seven solutions
 1. [الحوكمة المؤسسية](https://web.hwkm.net/governance/): حوكمة تُبنى بشكل صحيح من أول مرة، لا تُعاد صياغتها كل عام. مجلس، لجان، سياسات، وصلاحيات — في هيكل واحد يعكس شركتك كما هي، لا كما في القوالب الجاهزة.
@@ -35,6 +35,7 @@ HWKM (حوكم) is a Saudi-built, all-in-one Governance, Risk and Compliance (GR
 - [الصفحة الرئيسية](https://web.hwkm.net/): نبذة، والحلول، والمميزات، والأسئلة الشائعة، والتواصل
 - [سياسة الخصوصية](https://web.hwkm.net/privacy/)
 - [الشروط والأحكام](https://web.hwkm.net/terms/)
+- [English site / النسخة الإنجليزية](https://web.hwkm.net/en/)
 - [النسخة الكاملة للمحتوى / Full content](https://web.hwkm.net/llms-full.txt)
 
 ## التواصل الاجتماعي / Social

@@ -21,14 +21,12 @@ Allow: /
 User-agent: Perplexity-User
 Allow: /
 
-# AI model-training crawlers (currently allowed; remove or set Disallow to opt out)
+# AI model-training crawlers from reputable providers that honour robots.txt — allowed,
+# so the brand and its public guides can be known to future models
 User-agent: GPTBot
 Allow: /
 
 User-agent: ClaudeBot
-Allow: /
-
-User-agent: anthropic-ai
 Allow: /
 
 User-agent: Google-Extended
@@ -43,7 +41,8 @@ Allow: /
 User-agent: CCBot
 Allow: /
 
+# Blocked: aggressive crawler with little citation/answer value
 User-agent: Bytespider
-Allow: /
+Disallow: /
 
 Sitemap: https://web.hwkm.net/sitemap.xml
